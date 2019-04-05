@@ -8,42 +8,51 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'social',
         children: [
           {
             path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule'
+            loadChildren: '../social/social.module#SocialPageModule'
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'shopping',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../shopping/shopping.module#ShoppingPageModule'
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'collections',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../collections/collections.module#CollectionsPageModule'
+          }
+        ]
+      },
+      {
+        path: 'more',
+        children: [
+          {
+            path: '',
+            loadChildren: '../more/more.module#MorePageModule'
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/social',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/social',
     pathMatch: 'full'
   }
 ];
