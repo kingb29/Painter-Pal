@@ -1,0 +1,27 @@
+<ion-content>
+  <ion-item>
+    <ion-label position="fixed">Name</ion-label>
+    <ion-input [(ngModel)]="newMini.title"></ion-input>
+  </ion-item>
+ 
+  <ion-item>
+    <ion-label position="fixed">Description</ion-label>
+    <ion-input [(ngModel)]="newMini.desc"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Brand</ion-label>
+    <ion-input [(ngModel)]="newMini.brand"></ion-input>
+  </ion-item>
+ 
+  <ion-item>
+    <ion-label position="fixed">Value</ion-label>
+    <ion-input [(ngModel)]="newMini.game"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Share</ion-label>
+    <ion-checkbox [(ngModel)]="newMini.shared"></ion-checkbox>
+  </ion-item>
+ 
+  <ion-button expand="full" (click)="addItem()">Create</ion-button>
+</ion-content>
