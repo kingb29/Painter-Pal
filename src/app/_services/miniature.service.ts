@@ -30,9 +30,7 @@ export class MiniatureService {
   }
  
   // READ
-  getMinis() {
-    console.log(this.minis);
-    
+  getMinis() {    
     return this.minis;
   }
  

@@ -62,7 +62,7 @@ export class MiniFormComponent implements OnInit {
         icon: 'camera',
         handler: () => {
           console.log('camera clicked');
-          this.newMini.imgUrl = this.cameraService.takePhoto(this.cameraService.camera.PictureSourceType.CAMERA, this);
+          this.cameraService.takePhoto(this, "camera");
         }
       },
       {
@@ -70,7 +70,7 @@ export class MiniFormComponent implements OnInit {
         icon: 'images',
         handler: () => {
           console.log('upload clicked');
-          this.newMini.imgUrl = this.cameraService.takePhoto(this.cameraService.camera.PictureSourceType.PHOTOLIBRARY, this);
+          this.newMini.imgUrl = this.cameraService.takePhoto(this, "upload");
       }
       }
     ]);

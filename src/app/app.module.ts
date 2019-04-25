@@ -11,7 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/File/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { FilePath } from '@ionic-native/file-path/ngx';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 // this specific project stuff
 import { AppRoutingModule } from './app-routing.module';
@@ -23,11 +23,13 @@ import { CameraService } from './_services/camera.service';
 // database stuff
 import { IonicStorageModule } from '@ionic/storage';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
+    BackgroundMode,
     StatusBar,
     SplashScreen,
     ActionSheetService,
@@ -35,7 +37,6 @@ import { IonicStorageModule } from '@ionic/storage';
     Camera,
     File,
     WebView,
-    FilePath,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     MiniatureService
   ],
