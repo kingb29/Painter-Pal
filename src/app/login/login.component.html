@@ -1,0 +1,28 @@
+<h2>Painter Pal</h2>
+ <ion-grid>
+    <ion-row justify-content-center>
+       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+             <h4>Login or Register</h4>
+             </div>
+             <img src = "./assets/icon/painterpal.jpg" class="center">
+              <div padding>
+                 <ion-item>
+                    <ion-input type="text" id = "username" ng-model="username" placeholder="Username" >
+                    </ion-input>
+                  </ion-item>
+                   <ion-item>
+                      <ion-input type="password" id = "password" ng-model="password" placeholder="Password" ></ion-input>
+                     </ion-item> 
+                    </div>
+                     <div padding> <ion-button (click) = "checkParams()" size="medium" expand="block">Login</ion-button> </div> 
+                     <div padding> <ion-button  size="medium" href="" expand="block">Register</ion-button> </div> 
+                     <div class = "hidden" id = "hiddenMsg">Please enter a valid Username and Password</div>
+         </ion-col> 
+      </ion-row> 
+  </ion-grid>
