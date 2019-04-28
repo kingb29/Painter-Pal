@@ -4,79 +4,46 @@ import { Storage } from '@ionic/storage';
 export interface Miniature {
   id: number,
   title: string,
+  imgUrl: any,
   desc: string,
   brand: string,
   game: string,
-  shared: boolean,
-  modified: number
+  shared: false,
+  modified: string
 }
 
-const COLLECTION_KEY = 'miniature';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MiniatureService {
 
-  constructor(private storage: Storage) {}
+  minis: Miniature[];
 
-  addItem(item: Miniature): Promise<any> {
-    return this.storage.get(COLLECTION_KEY).then((items: Miniature[]) => {
-      if (items) {
-        items.push(item);
-        return this.storage.set(COLLECTION_KEY, items);
-      } else {
-        return this.storage.set(COLLECTION_KEY, [item]);
-      }
-    });
+  constructor(private storage: Storage) {
+    this.minis = [];
+  }
+
+  createMini(item: Miniature) {
+    console.log(item);
+    this.minis.push(item);
   }
  
   // READ
-  getItems(): Promise<Miniature[]> {
-    return this.storage.get(COLLECTION_KEY);
+  getMinis() {    
+    return this.minis;
   }
  
   // UPDATE
-  updateItem(item: Miniature): Promise<any> {
-    return this.storage.get(COLLECTION_KEY).then((items: Miniature[]) => {
-      if (!items || items.length === 0) {
-        return null;
-      }
- 
-      let newItems: Miniature[] = [];
- 
-      for (let i of items) {
-        if (i.id === item.id) {
-          newItems.push(item);
-        } else {
-          newItems.push(i);
-        }
-      }
- 
-      return this.storage.set(COLLECTION_KEY, newItems);
-    });
+  updateMini(mini) {
+
   }
  
   // DELETE
-  deleteItem(id: number): Promise<Miniature> {
-    return this.storage.get(COLLECTION_KEY).then((items: Miniature[]) => {
-      if (!items || items.length === 0) {
-        return null;
-      }
- 
-      let toKeep: Miniature[] = [];
- 
-      for (let i of items) {
-        if (i.id !== id) {
-          toKeep.push(i);
-        }
-      }
-      return this.storage.set(COLLECTION_KEY, toKeep);
-    });
+  deleteMini(mini) {
+
   }
-  clearData() {
-    // DANGER WILL ROBINSON
-    // refresh page - doesn't reflect on page until you refresh
-    this.storage.clear();
+  clearMinis() {
+    this.minis = [];
   }
 }

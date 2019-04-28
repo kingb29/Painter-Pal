@@ -1,0 +1,6 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "painter-pal",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

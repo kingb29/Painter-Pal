@@ -1,7 +1,8 @@
 {
   "name": "painter-pal",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
