@@ -5,7 +5,8 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
-  { path: 'social', loadChildren: './social/social.module#SocialPageModule' }
+  { path: 'social', loadChildren: './social/social.module#SocialPageModule' },  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' }
+
 ];
 @NgModule({
   imports: [

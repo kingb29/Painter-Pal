@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
 
   public checkParams(){
-    console.log("hello");
     var username = (<HTMLInputElement>document.getElementById("username")).value; // get data for username and password
     var password = (<HTMLInputElement>document.getElementById("password")).value;
     if(username.length < 5 || password.length < 5){ // check data
