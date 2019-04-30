@@ -19,14 +19,13 @@ import { AppComponent } from './app.component';
 import { MiniatureService } from './_services/miniature.service';
 import { ActionSheetService } from './_services/actionsheet.service';
 import { CameraService } from './_services/camera.service';
-import { LoginComponent} from './login/login.component';
 
 // database stuff
 import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
