@@ -8,10 +8,9 @@ export interface Miniature {
   desc: string,
   brand: string,
   game: string,
-  shared: false,
+  shared: boolean,
   modified: string
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +19,14 @@ export class MiniatureService {
 
   minis: Miniature[];
 
+  miniIds: number;
+
   constructor(private storage: Storage) {
     this.minis = [];
+    this.miniIds = 2;
   }
 
   createMini(item: Miniature) {
-    console.log(item);
     this.minis.push(item);
   }
  
@@ -33,17 +34,39 @@ export class MiniatureService {
   getMinis() {    
     return this.minis;
   }
+
+  generateNewId() {
+    return this.miniIds++;
+  }
  
   // UPDATE
   updateMini(mini) {
+    console.log(mini.id);
+    const index = this.minis.findIndex((e) => e.id === mini.id);
 
+    if (index === -1) {
+        this.minis.push(mini);
+    } else {
+        this.minis[index] = mini;
+    }
   }
  
   // DELETE
   deleteMini(mini) {
-
+    const index = this.minis.findIndex((e) => e.id === mini.id);
+    if (index === -1) {
+      console.log("no id found");
+    } else {
+        this.minis.splice(index, 1);
+    }
   }
+
   clearMinis() {
     this.minis = [];
+  }
+
+  checkIfShared(mini) {
+    console.log(mini);
+    return (mini !== undefined && mini.shared == true);
   }
 }

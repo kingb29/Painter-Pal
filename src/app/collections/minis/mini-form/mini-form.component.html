@@ -1,5 +1,5 @@
   <ion-toolbar>
-    <ion-title>Add New Miniature</ion-title>
+    <ion-title>{{this?.title}}</ion-title>
     <ion-buttons slot="secondary">
       <ion-button (click)="doYouWantToSave()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -8,33 +8,34 @@
   </ion-toolbar>
 <ion-content>
   <ion-item>
-    <img [src]="this.newMini.imgUrl">
+    <img [src]="this.mini.imgUrl">
     <ion-fab class="newItem">
       <ion-fab-button (click)="openActionSheet()">+</ion-fab-button>
     </ion-fab>
   </ion-item>
   <ion-item>
     <ion-label></ion-label>
-    <ion-input required placeholder="Name" [(ngModel)]="this.newMini.title"></ion-input>
+    <ion-input required placeholder="Name" [(ngModel)]="this.mini.title"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label></ion-label>
-    <ion-textarea rows="4" placeholder="Description" [(ngModel)]="this.newMini.desc"></ion-textarea>
+    <ion-textarea rows="4" placeholder="Description" [(ngModel)]="this.mini.desc"></ion-textarea>
   </ion-item>
   <ion-item>
     <ion-label></ion-label>
-    <ion-input placeholder="Brand" [(ngModel)]="this.newMini.brand"></ion-input>
+    <ion-input placeholder="Brand" [(ngModel)]="this.mini.brand"></ion-input>
   </ion-item>
  
   <ion-item>
     <ion-label></ion-label>
-    <ion-input placeholder="Game" [(ngModel)]="this.newMini.game"></ion-input>
+    <ion-input placeholder="Game" [(ngModel)]="this.mini.game"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="fixed">Share</ion-label>
-    <ion-checkbox [(ngModel)]="this.newMini.shared"></ion-checkbox>
+    <ion-checkbox [(ngModel)]="this.mini.shared"></ion-checkbox>
   </ion-item>
  
-  <ion-button expand="full" (click)="createMini()">Create</ion-button>
+  <ion-button expand="full" (click)="createUpdateMini()">{{this.button}}</ion-button>
+  <ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
 </ion-content>
