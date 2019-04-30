@@ -9,15 +9,15 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-card>
+      <ion-col >
+        <ion-card (click) = "this.whichPage = 'paintingtutorials'">
           <ion-card-header>
             <ion-card-title>Painting Tutorials</ion-card-title>
           </ion-card-header>
          </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card>
+        <ion-card (click) = "this.whichPage = 'how'">
           <ion-card-header>
             <ion-card-title>How-To</ion-card-title>
           </ion-card-header>
@@ -29,16 +29,16 @@
 
     <ion-row>
       <ion-col>
-        <ion-card>
+        <ion-card (click) = "this.whichPage = 'tips'">
           <ion-card-header>
             <ion-card-title>Tips</ion-card-title>
           </ion-card-header>
           </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card>
+        <ion-card (click) = "this.whichPage = 'paintingcourses'">
           <ion-card-header>
-            <ion-card-title>Painting Corses</ion-card-title>
+            <ion-card-title>Painting Courses</ion-card-title>
           </ion-card-header>
          </ion-card>
       </ion-col>
@@ -46,4 +46,8 @@
       
     </ion-row>
   </ion-grid>
+  <app-paintingtutorials *ngIf="this.whichPage == 'paintingtutorials'"></app-paintingtutorials>
+  <app-how *ngIf="this.whichPage == 'how'"></app-how>
+  <app-tips *ngIf="this.whichPage == 'tips'"></app-tips>
+  <app-paintingcourses *ngIf="this.whichPage == 'paintingcourses'"></app-paintingcourses>
 </ion-content>
