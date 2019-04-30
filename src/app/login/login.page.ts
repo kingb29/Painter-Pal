@@ -1,22 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { AlertController } from '@ionic/angular';
-import { SocialPage } from '../social/social.page';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginPage implements OnInit {
 
+  constructor(public navCtrl: NavController, private router: Router) { }
 
-  constructor(public navCtrl: NavController, private router: Router) { 
-  
-  
+  ngOnInit() {
   }
-  ngOnInit() {}
-
 
   public checkParams(){
     var username = (<HTMLInputElement>document.getElementById("username")).value; // get data for username and password
@@ -25,10 +21,8 @@ export class LoginComponent implements OnInit {
       let elm = <HTMLElement>document.getElementById("hiddenMsg") // grabs hidden element
       elm.style.visibility = "visible"; // makes it visible
     }else{
-      this.router.navigateByUrl('/social'); // if they pass the parameter check then send them to the social tab
+      this.router.navigateByUrl(''); // if they pass the parameter check then send them to the social tab
     }
   }
 
-  
 }
-
