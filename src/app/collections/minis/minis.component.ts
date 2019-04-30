@@ -12,28 +12,36 @@ export class MinisComponent implements OnInit {
 
   minis: Miniature[];
 
-  /*minis = [
-    {
-      name: 'My first mini',
-      thumb: 'https://whc-cdn.games-workshop.com/wp-content/uploads/2017/02/Best-2016-10-Stardrake.jpg'
-    },
-    {
-      name: 'My second mini',
-      thumb: 'https://i.ebayimg.com/images/g/ftQAAOSwEetWAskt/s-l300.jpg'
-    }
-  ];*/
-
   constructor(private modalController: ModalController, private miniatureService: MiniatureService) {
     this.minis = this.miniatureService.getMinis();
+    this.minis.push(
+      <Miniature> {
+      title: 'This cool guy',
+      imgUrl: 'https://whc-cdn.games-workshop.com/wp-content/uploads/2017/02/Best-2016-10-Stardrake.jpg',
+      id: 1
+    });
   }
+      
 
-  ngOnInit() {
-    this.minis = this.miniatureService.getMinis();
-  }
+  ngOnInit() {}
 
-  async presentModal() {
+  async presentModal(thisisCreate, thismini) {
+    var thistitle = (thisisCreate)? "Add New Miniature":"Edit Miniature";
+    var thisbutton = (thisisCreate)? "Create":"Save";
+    var thismini = (!thisisCreate)? thismini:<Miniature>{
+      title: '',
+      imgUrl: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+      shared: false,
+      id: -1
+    };
     const modal = await this.modalController.create({
       component: MiniFormComponent,
+      componentProps: {
+        isCreate: thisisCreate,
+        mini: thismini,
+        title: thistitle,
+        button: thisbutton,
+      }
     });
     return await modal.present();
   }
