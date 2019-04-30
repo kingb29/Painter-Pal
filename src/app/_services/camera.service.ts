@@ -3,7 +3,6 @@ import { ToastController, Platform } from '@ionic/angular';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { File } from '@ionic-native/file';
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 @Injectable({
   providedIn: 'root'
