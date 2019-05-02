@@ -15,7 +15,7 @@ import { PaintsFormComponent } from './paints/paints-form/paints-form.component'
     FormsModule,
     RouterModule.forChild([{ path: '', component: CollectionsPage }])
   ],
-  declarations: [CollectionsPage, MinisComponent, MiniFormComponent, PaintsComponent],
+  declarations: [CollectionsPage, MinisComponent, MiniFormComponent, PaintsComponent, PaintsFormComponent],
   entryComponents: [MiniFormComponent, PaintsFormComponent]
 })
 export class CollectionsPageModule {}
