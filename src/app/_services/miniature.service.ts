@@ -9,7 +9,6 @@ export interface Miniature {
   brand: string,
   game: string,
   shared: boolean,
-  modified: string
 }
 
 @Injectable({
