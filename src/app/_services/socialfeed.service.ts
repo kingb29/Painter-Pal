@@ -128,7 +128,6 @@ export class SocialfeedService {
   }
 
   searchByTerm(findTerm) {
-    console.log("hi mom");
     return this.posts.filter(currentPost => {
       if(currentPost.title && findTerm || currentPost.author && findTerm) {
         if(currentPost.title.toLowerCase().indexOf(findTerm.toLowerCase()) > -1) {

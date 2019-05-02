@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
 import { PostModalComponent } from './postmodal/postmodal.component';
 import { Post, SocialfeedService } from './../_services/socialfeed.service';
+import { SettingsComponent } from '../settings/settings.component';
 
 
 @Component({
@@ -53,4 +54,13 @@ export class SocialPage {
     });
     return await modal.present();
   }
+
+  async presentSettingsModal() {
+    const modal = await this.modalController.create({
+      component: SettingsComponent,
+    });
+    return await modal.present();
+  }
+
+  
 }
