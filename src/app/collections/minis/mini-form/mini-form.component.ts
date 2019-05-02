@@ -76,6 +76,7 @@ export class MiniFormComponent implements OnInit {
           cssClass: 'secondary',
           handler: (blah) => {
             this.miniatureService.deleteMini(this.mini);
+            this.showToast("You successfully deleted a mini");
             this.closeModal();
           }
         }, {
