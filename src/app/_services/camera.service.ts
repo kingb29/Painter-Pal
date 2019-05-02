@@ -8,7 +8,7 @@ import { File } from '@ionic-native/file';
   providedIn: 'root'
 })
 export class CameraService {
-  constructor(public camera: Camera, private webview: WebView, private backgroundMode: BackgroundMode, private platform: Platform) { }
+  constructor(public camera: Camera, private webview: WebView, private platform: Platform) { }
 
   imgUrl: any;
 
