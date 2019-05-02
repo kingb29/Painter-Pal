@@ -45,6 +45,10 @@ export class PaintsFormComponent implements OnInit {
     await alert.present();
   }
 
+  async exitmodal(){
+    this.closeModal();
+  }
+
   async setColor(color){
     this.color = color;
   }

@@ -1,11 +1,8 @@
-<ion-toolbar>
-  <ion-title>{{this?.title}}</ion-title>
-  <ion-buttons slot="secondary">
+<ion-buttons>
     <ion-button (click)="doYouWantToSave()">
       <ion-icon slot="icon-only" name="close"></ion-icon>
     </ion-button>
   </ion-buttons>
-</ion-toolbar>
 <ion-content>
     <ion-list>
         <ion-radio-group>
@@ -169,6 +166,6 @@
           </ion-row>
           </ion-grid>
           </div>
-
-          <ion-button expand="full" (click)="createPaint()">Add Paint</ion-button>
+          <ion-input required placeholder="Paint Name"></ion-input>
+          <ion-button expand="full" (click)="exitmodal()">Add Paint</ion-button>
 </ion-content>
