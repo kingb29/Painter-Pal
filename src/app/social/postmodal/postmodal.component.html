@@ -1,3 +1,19 @@
-<p>
-  postmodal works!
-</p>
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Social</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-card>
+    <ion-card class="post-card" *ngFor="let p of posts">
+        <ion-img src={{p.mini.imgUrl}}></ion-img>
+        <ion-card-header>
+          <ion-card-title>{{p.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Made by {{p.author}}</p>
+          <p>Likes: {{p.likes}}</p>
+          <p>Comments: {{p.comments.length}}</p>
+        </ion-card-content>
+      </ion-card> 
+</ion-content>
