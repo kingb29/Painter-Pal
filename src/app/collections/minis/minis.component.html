@@ -1,7 +1,7 @@
 <ion-grid>
   <ion-row>
     <ion-col size="6" *ngFor="let mini of this.minis">
-    <ion-card (click)="presentModal(false, mini)">
+    <ion-card (click)="presentAddOrEditMiniModal(false, mini)">
       <img src="{{mini.imgUrl}}" alt="">
       <p>{{mini.title}}</p>
       <ion-icon *ngIf="mini !== undefined && mini.shared == true" name="share-alt" class="shared-icon"></ion-icon>
@@ -11,5 +11,5 @@
 </ion-grid>
 
 <ion-fab class="newItem">
-  <ion-fab-button (click)="presentModal(true, undefined)">+</ion-fab-button>
+  <ion-fab-button (click)="presentAddOrEditMiniModal(true, undefined)">+</ion-fab-button>
 </ion-fab>
