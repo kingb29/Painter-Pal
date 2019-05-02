@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SocialPage } from './social.page';
+import { PostModalComponent } from './postmodal/postmodal.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { SocialPage } from './social.page';
     FormsModule,
     RouterModule.forChild([{ path: '', component: SocialPage }])
   ],
-  declarations: [SocialPage]
+  declarations: [SocialPage, PostModalComponent],
+  entryComponents: [PostModalComponent]
 })
 export class SocialPageModule {}
