@@ -11,7 +11,7 @@
      <p class="author">{{post.author}}</p>
    </div>
    <div>
-     <ion-img src={{post.mini.imgUrl}}></ion-img>
+     <img class="image" src={{post.mini.imgUrl}}>
    </div>
    <div>
      <p>Likes: {{post.likes}}</p>
@@ -20,7 +20,7 @@
      <p class="numComments">Comments ({{post.comments.length}})</p>
      <table *ngFor="let p of post.comments">
        <tr>
-         <th width="15%"><ion-img src="/assets/userAnon.jpg" class="commentImg"></ion-img></th>
+         <th width="15%"><img src="/assets/userAnon.jpg" class="commentImg"></th>
          <th align="left" width="85%"><p>{{p}}</p></th>
        </tr> 
      </table>
