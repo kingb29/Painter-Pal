@@ -25,4 +25,10 @@
        </tr> 
      </table>
    </div>
+   <div>
+     <p>Tags:</p>
+     <div *ngFor="let t of post.tags">
+       <ion-chip>{{t}}</ion-chip>
+     </div>
+   </div>
 </ion-content>
