@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-postmodal',
@@ -7,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostModalComponent implements OnInit {
 
-  constructor() { }
+  public post;
+
+  constructor(private navParams: NavParams, private modCtrl: ModalController) { 
+    this.post = this.navParams.get('post');
+  }
 
   ngOnInit() {}
+
+  dismissModal(){
+    this.modCtrl.dismiss();
+  }
 
 }

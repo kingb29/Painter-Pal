@@ -1,19 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-      <ion-title>Social</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-card>
-    <ion-card class="post-card" *ngFor="let p of posts">
-        <ion-img src={{p.mini.imgUrl}}></ion-img>
-        <ion-card-header>
-          <ion-card-title>{{p.title}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>Made by {{p.author}}</p>
-          <p>Likes: {{p.likes}}</p>
-          <p>Comments: {{p.comments.length}}</p>
-        </ion-card-content>
-      </ion-card> 
+<ion-toolbar>
+  <ion-title>{{post.title}}</ion-title>
+  <ion-buttons slot="secondary">
+    <ion-button (click)="dismissModal()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content>
+   <div>
+     <p class="author">{{post.author}}</p>
+   </div>
+   <div>
+     <ion-img src={{post.mini.imgUrl}}></ion-img>
+   </div>
+   <div>
+     <p>Likes: {{post.likes}}</p>
+   </div>
+   <div class="comments">
+     <p class="numComments">Comments ({{post.comments.length}})</p>
+     <table *ngFor="let p of post.comments">
+       <tr>
+         <th width="15%"><ion-img src="/assets/userAnon.jpg" class="commentImg"></ion-img></th>
+         <th align="left" width="85%"><p>{{p}}</p></th>
+       </tr> 
+     </table>
+   </div>
 </ion-content>
