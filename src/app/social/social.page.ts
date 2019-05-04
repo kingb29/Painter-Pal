@@ -16,21 +16,16 @@ export class SocialPage {
   constructor(public nav: NavController, private modalController: ModalController, private socialFeedService: SocialfeedService){ }
 
   ngOnInit() {
-    this.posts = this.socialFeedService.getPosts();
-    //this.reset = this.postArr.slice(0);
-  }
-
-  initializeItems() {
-    //this.postArr = this.reset;
+    this.initializeItems();
   }
 
   search(event){
     
     const findTerm = event.srcElement.value;
     if(!findTerm){
-      return;
+      this.initializeItems();
     } else {
-      this.socialFeedService.searchByTerm(findTerm);
+      this.posts = this.socialFeedService.searchByTerm(findTerm);
     }
 
     /*this.postArr = this.postArr.filter(currentPost => {
@@ -43,6 +38,10 @@ export class SocialPage {
         return false;
       }
     });*/
+  }
+
+  initializeItems() {
+    this.posts = this.socialFeedService.getPosts();
   }
 
   async openModal(thisPost) {

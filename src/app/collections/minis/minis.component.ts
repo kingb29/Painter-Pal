@@ -14,18 +14,21 @@ export class MinisComponent implements OnInit {
 
   constructor(private modalController: ModalController, private miniatureService: MiniatureService) {
     this.minis = this.miniatureService.getMinis();
+<<<<<<< HEAD
     this.minis.push(
       <Miniature> {
       title: 'This cool guy',
       imgUrl: 'https://whc-cdn.games-workshop.com/wp-content/uploads/2017/02/Best-2016-10-Stardrake.jpg',
       id: 5
     });
+=======
+>>>>>>> 28b1162d01ec8c08391d367b426dc1d885c7f424
   }
       
 
   ngOnInit() {}
 
-  async presentModal(thisisCreate, thismini) {
+  async presentAddOrEditMiniModal(thisisCreate, thismini) {
     var thistitle = (thisisCreate)? "Add New Miniature":"Edit Miniature";
     var thisbutton = (thisisCreate)? "Create":"Save";
     var thismini = (!thisisCreate)? thismini:<Miniature>{
@@ -45,5 +48,7 @@ export class MinisComponent implements OnInit {
     });
     return await modal.present();
   }
+
+
 
 }

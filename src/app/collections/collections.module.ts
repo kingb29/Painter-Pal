@@ -7,7 +7,7 @@ import { CollectionsPage } from './collections.page';
 import { MinisComponent } from './minis/minis.component';
 import { PaintsComponent } from './paints/paints.component';
 import { MiniFormComponent } from './minis/mini-form/mini-form.component';
-
+import { PaintsFormComponent } from './paints/paints-form/paints-form.component';
 @NgModule({
   imports: [
     IonicModule,
@@ -16,7 +16,7 @@ import { MiniFormComponent } from './minis/mini-form/mini-form.component';
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: CollectionsPage }])
   ],
-  declarations: [CollectionsPage, MinisComponent, MiniFormComponent, PaintsComponent],
-  entryComponents: [MiniFormComponent]
+  declarations: [CollectionsPage, MinisComponent, MiniFormComponent, PaintsComponent, PaintsFormComponent],
+  entryComponents: [MiniFormComponent, PaintsFormComponent]
 })
 export class CollectionsPageModule {}

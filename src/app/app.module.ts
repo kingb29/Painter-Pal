@@ -11,7 +11,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/File/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 // this specific project stuff
 import { AppRoutingModule } from './app-routing.module';
@@ -30,7 +29,6 @@ import { IonicStorageModule } from '@ionic/storage';
   entryComponents: [SettingsComponent],
   imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
-    BackgroundMode,
     StatusBar,
     SplashScreen,
     ActionSheetService,
