@@ -100,10 +100,7 @@ export class MiniFormComponent implements OnInit {
           cssClass: 'secondary',
           handler: (blah) => {
             this.miniatureService.deleteMini(this.mini);
-<<<<<<< HEAD
             this.socialFeedService.deletePost(this.mini);
-=======
->>>>>>> 28b1162d01ec8c08391d367b426dc1d885c7f424
             this.showToast("You successfully deleted a mini");
             this.closeModal();
           }
