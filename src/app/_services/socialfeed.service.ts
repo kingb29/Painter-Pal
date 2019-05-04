@@ -140,8 +140,8 @@ export class SocialfeedService {
     this.posts[postId].tags = this.generateTags(mini, title, user);
   }
 
-  deletePost(post) {
-    const index = this.posts.findIndex((e) => e.id === post.id);
+  deletePost(mini) {
+    const index = this.posts.findIndex((post) => post.mini.id === mini.id);
     if (index === -1) {
       console.log("no id found");
     } else {

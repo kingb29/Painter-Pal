@@ -45,9 +45,8 @@ export class MiniFormComponent implements OnInit {
   }
 
   validate() {
-    console.log(this.mini.title + " " + this.mini.shared + " " + this.mini.postTitle);
     if (this.mini.title !== undefined) {
-      if (this.mini.shared && this.mini.postTitle !== undefined) {
+      if ((this.mini.shared && this.mini.postTitle !== undefined) || !this.mini.shared) {
         return true;
       } else {
         return false; // no postTitle if shared
