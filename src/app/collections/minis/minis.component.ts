@@ -14,6 +14,15 @@ export class MinisComponent implements OnInit {
 
   constructor(private modalController: ModalController, private miniatureService: MiniatureService) {
     this.minis = this.miniatureService.getMinis();
+<<<<<<< HEAD
+    this.minis.push(
+      <Miniature> {
+      title: 'This cool guy',
+      imgUrl: 'https://whc-cdn.games-workshop.com/wp-content/uploads/2017/02/Best-2016-10-Stardrake.jpg',
+      id: 5
+    });
+=======
+>>>>>>> 28b1162d01ec8c08391d367b426dc1d885c7f424
   }
       
 
