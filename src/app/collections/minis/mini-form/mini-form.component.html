@@ -1,41 +1,49 @@
   <ion-toolbar>
     <ion-title>{{this?.title}}</ion-title>
     <ion-buttons slot="secondary">
-      <ion-button (click)="doYouWantToSave()">
+      <ion-button (click)="checkIfMiniIsDifferent()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 <ion-content>
-  <ion-item>
-    <img [src]="this.mini.imgUrl">
-    <ion-fab class="newItem">
-      <ion-fab-button (click)="openActionSheet()">+</ion-fab-button>
-    </ion-fab>
-  </ion-item>
-  <ion-item>
-    <ion-label></ion-label>
-    <ion-input required placeholder="Name" [(ngModel)]="this.mini.title"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label></ion-label>
-    <ion-textarea rows="4" placeholder="Description" [(ngModel)]="this.mini.desc"></ion-textarea>
-  </ion-item>
-  <ion-item>
-    <ion-label></ion-label>
-    <ion-input placeholder="Brand" [(ngModel)]="this.mini.brand"></ion-input>
-  </ion-item>
- 
-  <ion-item>
-    <ion-label></ion-label>
-    <ion-input placeholder="Game" [(ngModel)]="this.mini.game"></ion-input>
-  </ion-item>
+  <form (ngSubmit)="createUpdateMini()">
+    
+    <ion-item>
+      <img [src]="this.mini.imgUrl">
+      <ion-fab class="newItem">
+        <ion-fab-button (click)="openActionSheet()">+</ion-fab-button>
+      </ion-fab>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Name *</ion-label>
+      <ion-input required [(ngModel)]="this.mini.title" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea rows="4" [(ngModel)]="this.mini.desc" name="desc"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Brand</ion-label>
+      <ion-input [(ngModel)]="this.mini.brand" name="brand"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Game</ion-label>
+      <ion-input [(ngModel)]="this.mini.game" name="game"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="fixed">Share</ion-label>
-    <ion-checkbox [(ngModel)]="this.mini.shared"></ion-checkbox>
-  </ion-item>
- 
-  <ion-button expand="full" (click)="createUpdateMini()">{{this.button}}</ion-button>
-  <ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
+    <ion-item>
+      <ion-label position="fixed">Share</ion-label>
+      <ion-checkbox [(ngModel)]="this.mini.shared" name="shared"></ion-checkbox>
+    </ion-item>
+
+    <ion-item *ngIf="this.mini.shared">
+      <ion-label position="stacked">Post Title *</ion-label>
+      <ion-input [(ngModel)]="this.mini.postTitle" name="postTitle" ng-required="this.mini.shared"></ion-input>
+    </ion-item>
+  
+    <ion-button expand="full" type="submit">{{this.button}}</ion-button>
+    <ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
+  </form>
 </ion-content>

@@ -18,7 +18,7 @@ export class MinisComponent implements OnInit {
       <Miniature> {
       title: 'This cool guy',
       imgUrl: 'https://whc-cdn.games-workshop.com/wp-content/uploads/2017/02/Best-2016-10-Stardrake.jpg',
-      id: 1
+      id: 5
     });
   }
       

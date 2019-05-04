@@ -21,7 +21,7 @@
       <ion-card class="post-card" *ngFor="let p of posts" (click)="openModal(p)">
           <ion-img src={{p.mini.imgUrl}}></ion-img>
           <ion-card-header>
-            <ion-card-title>{{p.title}}</ion-card-title>
+            <ion-card-title>{{p.mini.postTitle}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <p>Made by {{p.author}}</p>

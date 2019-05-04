@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Miniature, MiniatureService } from 'src/app/_services/miniature.service';
 import { ModalController, ToastController, NavParams } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { ActionSheetService } from 'src/app/_services/actionsheet.service';
 import { CameraService } from 'src/app/_services/camera.service';
+import { SocialfeedService } from 'src/app/_services/socialfeed.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-mini-form',
@@ -17,14 +19,19 @@ export class MiniFormComponent implements OnInit {
   public title = this.navParams.get('thistitle');
   public button = this.navParams.get('thisbutton');
 
+  public miniForm: FormGroup;
+
   constructor(
     private modalController: ModalController, 
     private alertController: AlertController,
     private toastController: ToastController,
+    private formBuilder: FormBuilder,
     private actionSheetService: ActionSheetService,
     private cameraService: CameraService,
     private miniatureService: MiniatureService,
+    private socialFeedService: SocialfeedService,
     private navParams: NavParams) {
+
       this.isCreate = this.navParams.get('isCreate');
       this.title = this.navParams.get('title');
       this.button = this.navParams.get('button');
@@ -37,8 +44,25 @@ export class MiniFormComponent implements OnInit {
       }
   }
 
+  validate() {
+    console.log(this.mini.title + " " + this.mini.shared + " " + this.mini.postTitle);
+    if (this.mini.title !== undefined) {
+      if (this.mini.shared && this.mini.postTitle !== undefined) {
+        return true;
+      } else {
+        return false; // no postTitle if shared
+      }
+    } else {
+      return false; // no title
+    }
+  }
+
   closeModal() {
     this.modalController.dismiss();
+  }
+
+  checkIfMiniIsDifferent() {
+    this.doYouWantToSave();
   }
 
   async doYouWantToSave() {
@@ -76,6 +100,8 @@ export class MiniFormComponent implements OnInit {
           cssClass: 'secondary',
           handler: (blah) => {
             this.miniatureService.deleteMini(this.mini);
+            this.socialFeedService.deletePost(this.mini);
+            this.showToast("You successfully deleted a mini");
             this.closeModal();
           }
         }, {
@@ -112,28 +138,61 @@ export class MiniFormComponent implements OnInit {
   }
 
   createUpdateMini() {
-    if (this.isCreate) {
-      this.mini.id = this.miniatureService.generateNewId();
-      console.log(this.mini.id);
-      this.miniatureService.createMini(this.mini);
-      this.showToast("You successfully created a mini");
+    if (this.validate()) {
+      if (this.isCreate) {
+        this.mini.id = this.miniatureService.generateNewId();
+        console.log(this.mini.id);
+        this.miniatureService.createMini(this.mini);
+        if (this.mini.shared) {
+          this.socialFeedService.createOrUpdatePost(this.mini, this.mini.postTitle, "testuser");
+        }
+        this.showToast("You successfully created a mini");
+      } else {
+        this.miniatureService.updateMini(this.mini);
+        if (this.mini.shared) {
+          this.socialFeedService.createOrUpdatePost(this.mini, this.mini.postTitle, "testuser");
+        } else {
+          this.socialFeedService.deletePost(this.mini);
+        }
+        this.showToast("You successfully updated a mini");
+      }
+      this.closeModal();
     } else {
-      this.miniatureService.updateMini(this.mini);
-      this.showToast("You successfully updated a mini");
+      return false;
     }
-    this.closeModal();
   }
 
   async showToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
       duration: 2000,
-      showCloseButton: true
+      showCloseButton: true,
+      position: 'top'
     });
     toast.present();
   }
 
+  // changePostTitleValidity() {
+  //   const postTitleControl = this.miniForm.get('postTitle');
+  //       if (this.mini.shared) {
+  //         postTitleControl.setValidators([Validators.required]);
+  //       } else {
+  //         postTitleControl.setValidators(null);
+  //       }
+  //       postTitleControl.updateValueAndValidity();
+      
+  // }
+
   ngOnInit() {
+  //   this.changePostTitleValidity();
+  //   this.miniForm = this.formBuilder.group({
+  //     title: [this.mini.title, Validators.required],
+  //     desc: this.mini.desc,
+  //     brand: this.mini.brand,
+  //     game: this.mini.brand,
+  //     shared: this.mini.shared,
+  //     postTitle: this.mini.postTitle,
+  // });
   }
 
 }

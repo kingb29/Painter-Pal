@@ -9,6 +9,7 @@ export interface Miniature {
   brand: string,
   game: string,
   shared: boolean,
+  postTitle: string,
 }
 
 @Injectable({
@@ -19,6 +20,8 @@ export class MiniatureService {
   minis: Miniature[];
 
   miniIds: number;
+
+  optionalPostTitle: string;
 
   constructor(private storage: Storage) {
     this.minis = [];
