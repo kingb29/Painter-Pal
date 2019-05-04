@@ -1,0 +1,28 @@
+<ion-toolbar>
+  <ion-title>{{post.title}}</ion-title>
+  <ion-buttons slot="secondary">
+    <ion-button (click)="dismissModal()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content>
+   <div>
+     <p class="author">{{post.author}}</p>
+   </div>
+   <div>
+     <img class="image" src={{post.mini.imgUrl}}>
+   </div>
+   <div>
+     <p>Likes: {{post.likes}}</p>
+   </div>
+   <div class="comments">
+     <p class="numComments">Comments ({{post.comments.length}})</p>
+     <table *ngFor="let p of post.comments">
+       <tr>
+         <th width="15%"><img src="/assets/userAnon.jpg" class="commentImg"></th>
+         <th align="left" width="85%"><p>{{p}}</p></th>
+       </tr> 
+     </table>
+   </div>
+</ion-content>

@@ -16,14 +16,6 @@ export class CollectionsPage {
   }
   
   constructor(private modalController: ModalController) {}
- 
-
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: MiniFormComponent,
-    });
-    return await modal.present();
-  }
 
   async presentSettingsModal() {
     const modal = await this.modalController.create({
