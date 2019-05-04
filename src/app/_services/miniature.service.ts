@@ -9,6 +9,7 @@ export interface Miniature {
   brand: string,
   game: string,
   shared: boolean,
+  postTitle: string,
 }
 
 @Injectable({
@@ -20,13 +21,15 @@ export class MiniatureService {
 
   miniIds: number;
 
+  optionalPostTitle: string;
+
   constructor(private storage: Storage) {
     this.minis = [];
     this.minis.push(
       <Miniature> {
       title: 'This cool guy',
       imgUrl: 'https://whc-cdn.games-workshop.com/wp-content/uploads/2017/02/Best-2016-10-Stardrake.jpg',
-      id: 1
+      id: 6
     });
     this.miniIds = 2;
   }
@@ -46,7 +49,6 @@ export class MiniatureService {
  
   // UPDATE
   updateMini(mini) {
-    console.log(mini.id);
     const index = this.minis.findIndex((e) => e.id === mini.id);
 
     if (index === -1) {
