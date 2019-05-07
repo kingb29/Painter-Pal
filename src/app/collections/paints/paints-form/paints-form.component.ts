@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, AlertController, ToastController, NavParams } from '@ionic/angular';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-paints-form',
   templateUrl: './paints-form.component.html',
@@ -8,13 +8,19 @@ import { ModalController, AlertController, ToastController, NavParams } from '@i
 })
 export class PaintsFormComponent implements OnInit {
   
-  public color = null;
-  public brand = null;
+  public color:String;
+  public brand: String;
+  public name = this.navParams.get('thisname');
+  public mini: String;
 
   constructor(
     private modalController: ModalController, 
     private alertController: AlertController,
-    private toastController: ToastController,) { }
+    private toastController: ToastController,
+    private navParams: NavParams) {
+      this.name = this.navParams.get('name');
+      this.mini = this.navParams.get('mini');
+     }
 
 
   closeModal() {
@@ -46,14 +52,16 @@ export class PaintsFormComponent implements OnInit {
   }
 
   async exitmodal(){
+    
+
     this.closeModal();
   }
 
-  async setColor(color){
+  async setColor(color: String){
     this.color = color;
   }
 
-  async setBrand(brand){
+  async setBrand(brand: String){
     this.brand = brand;
   }
   ngOnInit() {}
