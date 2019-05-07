@@ -12,17 +12,17 @@
       
           <ion-item>
             <ion-label>Citadel</ion-label>
-            <ion-radio slot="start" value="Citadel" (click)="setBrand()"></ion-radio>
+            <ion-radio slot="start" value="Citadel" (click)="setBrand('Citadel')"></ion-radio>
           </ion-item>
       
           <ion-item>
             <ion-label>Valejo</ion-label>
-            <ion-radio slot="start" value="Valejo" (click)="setBrand()"></ion-radio>
+            <ion-radio slot="start" value="Valejo" (click)="setBrand('Valejo')"></ion-radio>
           </ion-item>
       
           <ion-item>
             <ion-label>Army Painter</ion-label>
-            <ion-radio slot="start" value="Army-Painter" (click)="setBrand()"></ion-radio>
+            <ion-radio slot="start" value="Army-Painter" (click)="setBrand('Army Painter')"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-list>
@@ -166,6 +166,7 @@
           </ion-row>
           </ion-grid>
           </div>
-          <ion-input required placeholder="Paint Name"></ion-input>
+          <ion-input required placeholder="Paint Name" [(ng-model)]="PaintName"></ion-input>
+          <ion-input required placeholder="mini-name" [(ng-model)]="mini-name"></ion-input>
           <ion-button expand="full" (click)="exitmodal()">Add Paint</ion-button>
 </ion-content>
