@@ -14,6 +14,9 @@
      <img class="image" src={{post.mini.imgUrl}}>
    </div>
    <div>
+    <ion-label *ngFor="let paint of post.mini.paints"><div class="color" [ngStyle]="{'background': paint.color}">&nbsp;</div> {{paint.name}}</ion-label>
+   </div>
+   <div>
      <p>Likes: {{post.likes}}</p>
    </div>
    <div class="comments">

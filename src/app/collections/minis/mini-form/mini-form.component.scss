@@ -12,3 +12,10 @@ img {
 ion-label {
     color: #aaa;
 }
+
+.color {
+    display: inline-block;
+    width: 20px;
+    outline: 1px solid black;
+    outline-offset: -1px;
+}

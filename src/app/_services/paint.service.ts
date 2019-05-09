@@ -26,7 +26,7 @@ export class PaintService {
         this.paints.push(
             <Paint> {
               id: 1,
-              name: 'Red',
+              name: 'Khorne Red',
               color: '#990000',
               brand: 'Citadel',
           });
@@ -35,7 +35,7 @@ export class PaintService {
             <Paint> {
               id: 2,
               name: 'Bone Dust',
-              color: '#990000',
+              color: '#FFE5CC',
               brand: 'Valejo',
           });
 
