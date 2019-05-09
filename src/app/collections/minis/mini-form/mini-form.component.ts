@@ -37,14 +37,7 @@ export class MiniFormComponent implements OnInit {
       this.isCreate = this.navParams.get('isCreate');
       this.title = this.navParams.get('title');
       this.button = this.navParams.get('button');
-      if (this.isCreate) {
-        this.mini = <Miniature>{
-          imgUrl: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-          shared: false,
-          id: -1,
-          paints: []
-        };
-      }
+      
 
       this.paints = this.paintService.getPaints();
   }
@@ -195,6 +188,15 @@ export class MiniFormComponent implements OnInit {
   }
 
   ngOnInit() {
+  
+    if (this.isCreate) {
+      this.mini = <Miniature>{
+        imgUrl: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+        shared: false,
+        id: -1,
+        paints: []
+      };
+    }
     console.log(this.mini);
   }
 
