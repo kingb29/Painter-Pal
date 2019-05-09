@@ -38,6 +38,14 @@
       <ion-checkbox [(ngModel)]="this.mini.shared" name="shared"></ion-checkbox>
     </ion-item>
 
+    <ion-list>
+        <ion-label position="stacked">Paints</ion-label>
+        <ion-item *ngFor="let paint of this.paints">
+          <ion-checkbox slot="start" (change)="changePaint(paint)"></ion-checkbox>
+          <ion-label><span (ngStyle)="{'background-color': paint.color}">&nbsp;</span> {{paint.name}}</ion-label>
+        </ion-item>
+      </ion-list>
+
     <ion-item *ngIf="this.mini.shared">
       <ion-label position="stacked">Post Title *</ion-label>
       <ion-input [(ngModel)]="this.mini.postTitle" name="postTitle" ng-required="this.mini.shared"></ion-input>

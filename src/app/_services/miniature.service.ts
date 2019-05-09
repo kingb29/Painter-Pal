@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Paint } from './paint.service';
 
 export interface Miniature {
   id: number,
@@ -8,6 +9,7 @@ export interface Miniature {
   desc: string,
   brand: string,
   game: string,
+  paints: Paint[],
   shared: boolean,
   postTitle: string,
 }

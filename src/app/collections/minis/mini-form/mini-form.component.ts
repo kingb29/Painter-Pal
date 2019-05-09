@@ -1,11 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Miniature, MiniatureService } from 'src/app/_services/miniature.service';
 import { ModalController, ToastController, NavParams } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { ActionSheetService } from 'src/app/_services/actionsheet.service';
 import { CameraService } from 'src/app/_services/camera.service';
 import { SocialfeedService } from 'src/app/_services/socialfeed.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Paint, PaintService } from 'src/app/_services/paint.service';
 
 @Component({
   selector: 'app-mini-form',
@@ -19,13 +20,15 @@ export class MiniFormComponent implements OnInit {
   public title = this.navParams.get('thistitle');
   public button = this.navParams.get('thisbutton');
 
+  public paints: Paint[];
+
   public miniForm: FormGroup;
 
   constructor(
     private modalController: ModalController, 
     private alertController: AlertController,
     private toastController: ToastController,
-    private formBuilder: FormBuilder,
+    private paintService: PaintService,
     private actionSheetService: ActionSheetService,
     private cameraService: CameraService,
     private miniatureService: MiniatureService,
@@ -42,6 +45,8 @@ export class MiniFormComponent implements OnInit {
           id: -1
         };
       }
+
+      this.paints = this.paintService.getPaints();
   }
 
   validate() {
