@@ -33,6 +33,14 @@
       <ion-input [(ngModel)]="this.mini.game" name="game"></ion-input>
     </ion-item>
 
+    <ion-list>
+      <ion-label position="stacked">Paints Used</ion-label>
+      <ion-item *ngFor="let paint of this.paints">
+        <ion-checkbox slot="start" [checked]="doesMiniHaveThisPaint(paint)" (ionChange)="checkOrUncheckPaint($event, paint)"></ion-checkbox>
+        <ion-label><div class="color" [ngStyle]="{'background': paint.color}">&nbsp;</div> {{paint.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+
     <ion-item>
       <ion-label position="fixed">Share</ion-label>
       <ion-checkbox [(ngModel)]="this.mini.shared" name="shared"></ion-checkbox>

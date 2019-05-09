@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Paint } from './paint.service';
 
 export interface Miniature {
   id: number,
@@ -8,6 +9,7 @@ export interface Miniature {
   desc: string,
   brand: string,
   game: string,
+  paints: Paint[],
   shared: boolean,
   postTitle: string,
 }
@@ -21,15 +23,14 @@ export class MiniatureService {
 
   miniIds: number;
 
-  optionalPostTitle: string;
-
   constructor(private storage: Storage) {
     this.minis = [];
     this.minis.push(
       <Miniature> {
       title: 'This cool guy',
       imgUrl: 'https://whc-cdn.games-workshop.com/wp-content/uploads/2017/02/Best-2016-10-Stardrake.jpg',
-      id: 6
+      id: 6,
+      paints: []
     });
     this.miniIds = 2;
   }
@@ -66,6 +67,10 @@ export class MiniatureService {
     } else {
         this.minis.splice(index, 1);
     }
+  }
+
+  doesMiniHaveThisPaint(paint, mini) {
+    return (mini.paints.findIndex((e) => e.id === paint.id) !== -1);
   }
 
   clearMinis() {

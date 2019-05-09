@@ -1,11 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Miniature, MiniatureService } from 'src/app/_services/miniature.service';
 import { ModalController, ToastController, NavParams } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { ActionSheetService } from 'src/app/_services/actionsheet.service';
 import { CameraService } from 'src/app/_services/camera.service';
 import { SocialfeedService } from 'src/app/_services/socialfeed.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Paint, PaintService } from 'src/app/_services/paint.service';
 
 @Component({
   selector: 'app-mini-form',
@@ -19,13 +20,14 @@ export class MiniFormComponent implements OnInit {
   public title = this.navParams.get('thistitle');
   public button = this.navParams.get('thisbutton');
 
-  public miniForm: FormGroup;
+  public paints: Paint[];
+
 
   constructor(
     private modalController: ModalController, 
     private alertController: AlertController,
     private toastController: ToastController,
-    private formBuilder: FormBuilder,
+    private paintService: PaintService,
     private actionSheetService: ActionSheetService,
     private cameraService: CameraService,
     private miniatureService: MiniatureService,
@@ -39,9 +41,12 @@ export class MiniFormComponent implements OnInit {
         this.mini = <Miniature>{
           imgUrl: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
           shared: false,
-          id: -1
+          id: -1,
+          paints: []
         };
       }
+
+      this.paints = this.paintService.getPaints();
   }
 
   validate() {
@@ -58,6 +63,23 @@ export class MiniFormComponent implements OnInit {
 
   closeModal() {
     this.modalController.dismiss();
+  }
+
+  doesMiniHaveThisPaint(paint) {
+    return this.miniatureService.doesMiniHaveThisPaint(paint, this.mini);
+  }
+
+  checkOrUncheckPaint(event, paint) {
+    if (event.detail.checked) {
+      this.mini.paints.push(paint);
+    } else {
+        const index = this.mini.paints.findIndex((e) => e.id === paint.id);
+        if (index === -1) {
+        console.log("paint not found");
+        } else {
+            this.mini.paints.splice(index, 1);
+        }
+    }
   }
 
   checkIfMiniIsDifferent() {
@@ -140,7 +162,6 @@ export class MiniFormComponent implements OnInit {
     if (this.validate()) {
       if (this.isCreate) {
         this.mini.id = this.miniatureService.generateNewId();
-        console.log(this.mini.id);
         this.miniatureService.createMini(this.mini);
         if (this.mini.shared) {
           this.socialFeedService.createOrUpdatePost(this.mini, this.mini.postTitle, "testuser");
@@ -151,7 +172,9 @@ export class MiniFormComponent implements OnInit {
         if (this.mini.shared) {
           this.socialFeedService.createOrUpdatePost(this.mini, this.mini.postTitle, "testuser");
         } else {
-          this.socialFeedService.deletePost(this.mini);
+          if (this.socialFeedService.doesPostExistByMiniId(this.mini)) {
+            this.socialFeedService.deletePost(this.mini);
+          }
         }
         this.showToast("You successfully updated a mini");
       }
@@ -171,27 +194,8 @@ export class MiniFormComponent implements OnInit {
     toast.present();
   }
 
-  // changePostTitleValidity() {
-  //   const postTitleControl = this.miniForm.get('postTitle');
-  //       if (this.mini.shared) {
-  //         postTitleControl.setValidators([Validators.required]);
-  //       } else {
-  //         postTitleControl.setValidators(null);
-  //       }
-  //       postTitleControl.updateValueAndValidity();
-      
-  // }
-
   ngOnInit() {
-  //   this.changePostTitleValidity();
-  //   this.miniForm = this.formBuilder.group({
-  //     title: [this.mini.title, Validators.required],
-  //     desc: this.mini.desc,
-  //     brand: this.mini.brand,
-  //     game: this.mini.brand,
-  //     shared: this.mini.shared,
-  //     postTitle: this.mini.postTitle,
-  // });
+    console.log(this.mini);
   }
 
 }

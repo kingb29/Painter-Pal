@@ -1,3 +1,45 @@
-<p>
-  paints-form works!
-</p>
+<ion-content>
+    <ion-toolbar>
+        <ion-title>{{this?.title}}</ion-title>
+        <ion-buttons slot="secondary">
+          <ion-button (click)="doYouWantToSave()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+<ion-list>
+  <ion-radio-group [(ngModel)]="this.paint.brand">
+  <ion-list-header>
+    <ion-label>Paint Brand</ion-label>
+  </ion-list-header>
+  <ion-item>
+    <ion-label>Citadel</ion-label>
+    <ion-radio slot="start" value="Citadel" (click)="setBrand('Citadel')">
+    </ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Valejo</ion-label>
+    <ion-radio slot="start" value="Valejo" (click)="setBrand('Valejo')">
+    </ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Army Painter</ion-label>
+    <ion-radio slot="start" value="Army-Painter" (click)="setBrand('Army Painter')"></ion-radio>
+  </ion-item>
+  </ion-radio-group>
+</ion-list>
+<div>
+  <ion-grid>
+    <ion-header>Pick a Color</ion-header>
+    <ion-row>
+        <div class="color" *ngFor="let color of this.colors" (click)="setColor(color)" [ngStyle]="{'background-color': color}" [ngClass]="this.paint.color == this.color ? 'selected': ''">&nbsp;</div>
+    </ion-row>
+  </ion-grid>
+</div>
+<ion-label position="stacked">Name *</ion-label>
+<ion-input required placeholder="Paint Name" [(ngModel)]="this.paint.name"></ion-input>
+<ion-button expand="full" (click)="exitmodal()">{{this.button}}</ion-button>
+<ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
+</ion-content>
