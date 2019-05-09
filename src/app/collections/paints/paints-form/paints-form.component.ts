@@ -12,28 +12,22 @@ import { Paint, PaintService } from 'src/app/_services/paint.service'
 export class PaintsFormComponent implements OnInit {
   
   public isCreate = this.navParams.get('thisisCreate')
-  public color:String;
-  public brand: String;
-  public name = this.navParams.get('thisname');
-  public mini = this.navParams.get('thismininame')
+  public paint: Paint;
+  public colors: string[];
 
   constructor(
     private modalController: ModalController, 
     private alertController: AlertController,
+    private toastController: ToastController,
     private paintService: PaintService,
     private navParams: NavParams) {
       this.isCreate = this.navParams.get('isCreate');
-      this.name = this.navParams.get('name');
-      this.mini = this.navParams.get('mini');
       if (this.isCreate) {
-        this.mini = <Paint>{
-          color: this.color,
-          brand: this.brand,
-          name: this.name,
-          mini: this.mini,
-
-        };
+        this.paint = <Paint>{};
+      } else {
+        this.paint = this.navParams.get('thispaint');
       }
+      this.colors = this.paintService.colors;
     }
 
 
@@ -43,18 +37,19 @@ export class PaintsFormComponent implements OnInit {
 
   createPaint() {
     if (this.isCreate) {
-      this.name.id = this.paintService.generateNewId();
-      console.log(this.name.id);
-      this.paintService.createPaint(this.name);
+      this.paint.id = this.paintService.generateNewId();
+      this.paintService.createPaint(this.paint);
+      this.showToast("You successfully created a paint");
     } else {
-      this.paintService.updatePaint(this.name);
+      this.paintService.updatePaint(this.paint);
+      this.showToast("You successfully updated a paint");
     }
     this.closeModal();
   }
   async doYouWantToSave() {
     const alert = await this.alertController.create({
       header: 'Confirm Cancel',
-      message: 'Are you sure that you want to canel?',
+      message: 'Are you sure that you want to cancel?',
       buttons: [
         {
           text: 'Yes',
@@ -75,16 +70,53 @@ export class PaintsFormComponent implements OnInit {
     await alert.present();
   }
 
+  async doYouWantToDelete() {
+    const alert = await this.alertController.create({
+      header: 'Confirm Delete',
+      message: 'Are you sure you want to delete this paint?',
+      buttons: [
+        {
+          text: 'Yes',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            this.paintService.deletePaint(this.paint);
+            this.showToast("You successfully deleted a paint");
+            this.closeModal();
+          }
+        }, {
+          text: 'No',
+          handler: () => {
+            this.closeModal();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async showToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      showCloseButton: true,
+      position: 'top'
+    });
+    toast.present();
+  }
+
   async exitmodal(){
     this.createPaint();
   }
 
-  async setColor(color: String){
-    this.color = color;
+  async setColor(color: string){
+    console.log(color);
+    this.paint.color = color;
   }
 
-  async setBrand(brand: String){
-    this.brand = brand;
+  async setBrand(brand: string){
+    this.paint.brand = brand;
   }
   ngOnInit() {}
 

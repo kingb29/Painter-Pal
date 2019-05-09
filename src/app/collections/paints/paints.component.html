@@ -1,48 +1,20 @@
 <ion-content class="paints-page">
-  <div class="ionCards">
-
-    <ion-card (click)="Orange-OrangeClick()" class="brand">
-      <ion-card-header class="Orange-Orange">
-        Orange Orange
-      </ion-card-header>
-      <ion-item class="brand">
-        Mini: This Cool Guy
+  <ion-row>
+    <ion-col size="6" *ngFor="let paint of this.paints">
+      <ion-card (click)="presentAddOrEditPaintModal(false, paint)">
+        <div class="paint-color" [ngStyle]="{ 'background-color': paint.color }"></div>
+        <ion-item>
+          <p>{{paint.name}}</p>
         </ion-item>
-        <ion-item class="brand">
-        Brand: Citadel
-      </ion-item>
-    </ion-card>
-
-    <ion-card (click)="Princess-Purple()" class="brand">
-      <ion-card-header class="Princess-Purple">
-       Princess Purple
-      </ion-card-header>
-        <ion-item class="brand">
-         Mini: This cool Guy
+        <ion-item>
+          <p>{{paint.brand}}</p>
         </ion-item>
-        <ion-item class="brand">
-        Brand: Army Painter
-      </ion-item>
-    </ion-card>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 
-    <ion-card (click)="Void()" class="brand">
-      <ion-card-header class="Void">
-        Void
-      </ion-card-header>
-        <ion-item class="brand">
-          Mini: This cool Guy
-        </ion-item>
-        <ion-item class="brand">
-          Brand: Valejo
-      </ion-item>
-
-    </ion-card>
-
-  </div>
   <ion-fab class="newPaint">
-      <ion-fab-button (click)="presentPaintsModal()">+</ion-fab-button>
-    </ion-fab>
-    
+    <ion-fab-button (click)="presentAddOrEditPaintModal(true, undefined)">+</ion-fab-button>
+  </ion-fab>
+
 </ion-content>
-
-

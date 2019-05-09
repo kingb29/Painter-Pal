@@ -13,27 +13,15 @@ export class PaintsComponent implements OnInit {
   paints: Paint[];
   constructor(public modalController: ModalController, private paintService: PaintService) {
     this.paints = this.paintService.getPaints();
-    this.paints.push(
-      <Paint> {
-        id: 1,
-        name: 'Red',
-        color: '#990000',
-        brand: 'Citadel',
-    });
    }
 
   ngOnInit() {}
 
 
-  async presentPaintsModal(thisisCreate, thispaint) {
-    var thistitle = (thisisCreate)? "Add New Paint": "Edit Paint";
+  async presentAddOrEditPaintModal(thisisCreate, thispaint) {
+    var thistitle = (thisisCreate)? "Add Paint": "Edit Paint";
     var thisbutton = (thisisCreate)? "Create":"Save";
-    var thispaint = (!thisisCreate)? thispaint:<Paint>{ 
-      id: 1,
-      name: 'Red',
-      color: '#990000',
-      brand: 'Citadel',
-    };
+    var thispaint = (!thisisCreate)? thispaint:<Paint>{};
     const modal = await this.modalController.create({
       component: PaintsFormComponent,
       componentProps: {
