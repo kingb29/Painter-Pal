@@ -14,6 +14,7 @@ export class PaintsFormComponent implements OnInit {
   public isCreate = this.navParams.get('thisisCreate')
   public paint: Paint;
   public colors: string[];
+  unchangedPaint: Paint;
 
   constructor(
     private modalController: ModalController, 
@@ -35,33 +36,49 @@ export class PaintsFormComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  createPaint() {
+  savePaint() {
+    this.createOrUpdatePaint(this.paint);
+    this.showToast("You successfully updated a paint");
+  }
+
+  createOrUpdatePaint(paint) {
     if (this.isCreate) {
       this.paint.id = this.paintService.generateNewId();
-      this.paintService.createPaint(this.paint);
+      this.paintService.createPaint(paint);
       this.showToast("You successfully created a paint");
     } else {
-      this.paintService.updatePaint(this.paint);
-      this.showToast("You successfully updated a paint");
+      this.paintService.updatePaint(paint);
     }
     this.closeModal();
   }
+
+  checkIfPaintIsDifferent() {
+    if (JSON.stringify(this.unchangedPaint) !== JSON.stringify(this.paint)) {
+      this.doYouWantToSave();
+    } else {
+      this.closeModal();
+    }
+  }
+
   async doYouWantToSave() {
     const alert = await this.alertController.create({
       header: 'Confirm Cancel',
-      message: 'Are you sure that you want to cancel?',
+      message: 'You have an unsaved paint. Do you want to save it?',
       buttons: [
         {
           text: 'Yes',
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
+            this.createOrUpdatePaint(this.paint);
+            this.showToast("You successfully updated a paint");
             this.closeModal();
           }
         }, {
           text: 'No',
           handler: () => {
-            
+            this.createOrUpdatePaint(this.unchangedPaint);
+            this.closeModal();
           }
         }
       ]
@@ -106,18 +123,15 @@ export class PaintsFormComponent implements OnInit {
     toast.present();
   }
 
-  async exitmodal(){
-    this.createPaint();
-  }
-
   async setColor(color: string){
-    console.log(color);
     this.paint.color = color;
   }
 
   async setBrand(brand: string){
     this.paint.brand = brand;
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.unchangedPaint = Object.assign({}, this.paint);
+  }
 
 }
