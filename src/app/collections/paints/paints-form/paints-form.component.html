@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ion-title>{{this?.title}}</ion-title>
         <ion-buttons slot="secondary">
-          <ion-button (click)="doYouWantToSave()">
+          <ion-button (click)="checkIfPaintIsDifferent()">
             <ion-icon slot="icon-only" name="close"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -40,6 +40,6 @@
 </div>
 <ion-label position="stacked">Name *</ion-label>
 <ion-input required placeholder="Paint Name" [(ngModel)]="this.paint.name"></ion-input>
-<ion-button expand="full" (click)="exitmodal()">{{this.button}}</ion-button>
+<ion-button expand="full" (click)="savePaint()">{{this.button}}</ion-button>
 <ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
 </ion-content>
