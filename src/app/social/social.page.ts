@@ -19,6 +19,11 @@ export class SocialPage {
     this.initializeItems();
   }
 
+  blur(event) {
+    var target = event.target;
+    target.blur();
+  }
+
   search(event){
     
     const findTerm = event.srcElement.value;
