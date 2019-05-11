@@ -15,6 +15,8 @@ import { Paint, PaintService } from 'src/app/_services/paint.service';
 })
 export class MiniFormComponent implements OnInit {
 
+  public unchangedMini: string;
+
   public mini = this.navParams.get('thismini');
   public isCreate = this.navParams.get('thisisCreate');
   public title = this.navParams.get('thistitle');
@@ -76,7 +78,11 @@ export class MiniFormComponent implements OnInit {
   }
 
   checkIfMiniIsDifferent() {
-    this.doYouWantToSave();
+    if (this.unchangedMini !== JSON.stringify(this.mini)) {
+      this.doYouWantToSave();
+    } else {
+      this.closeModal();
+    }
   }
 
   async doYouWantToSave() {
@@ -197,7 +203,8 @@ export class MiniFormComponent implements OnInit {
         paints: []
       };
     }
-    console.log(this.mini);
+
+    this.unchangedMini = JSON.stringify(this.mini);
   }
 
 }
