@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SocialPage } from './social.page';
 import { PostModalComponent } from './postmodal/postmodal.component';
+import { PostFormComponent } from './post-form/post-form.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { PostModalComponent } from './postmodal/postmodal.component';
     FormsModule,
     RouterModule.forChild([{ path: '', component: SocialPage }])
   ],
-  declarations: [SocialPage, PostModalComponent],
+  declarations: [SocialPage, PostModalComponent, PostFormComponent],
   entryComponents: [PostModalComponent]
 })
 export class SocialPageModule {}
