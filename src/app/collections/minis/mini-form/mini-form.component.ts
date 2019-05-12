@@ -40,20 +40,13 @@ export class MiniFormComponent implements OnInit {
       this.title = this.navParams.get('title');
       this.button = this.navParams.get('button');
       
-
+      
       this.paints = this.paintService.getPaints();
+      this.prepareColors();
   }
 
   validate() {
-    if (this.mini.title !== undefined) {
-      if ((this.mini.shared && this.mini.postTitle !== undefined) || !this.mini.shared) {
-        return true;
-      } else {
-        return false; // no postTitle if shared
-      }
-    } else {
-      return false; // no title
-    }
+    return this.mini.title !== undefined;
   }
 
   closeModal() {
@@ -65,6 +58,8 @@ export class MiniFormComponent implements OnInit {
   }
 
   checkOrUncheckPaint(event, paint) {
+    console.log(event);
+    console.log(paint);
     if (event.detail.checked) {
       this.mini.paints.push(paint);
     } else {
@@ -183,6 +178,21 @@ export class MiniFormComponent implements OnInit {
     }
   }
 
+  prepareColors() {
+    setTimeout(() => {
+			let elements = document.getElementsByClassName("alert-checkbox-label sc-ion-alert-md") as HTMLCollectionOf<HTMLElement>;
+      if (!elements.length) {
+				this.prepareColors();
+			} else {
+        for (let index = 0; index < elements.length; index++) {
+          console.log("hi");
+          elements[index].setAttribute("style", "border-right: 20px solid " + this.paints[index].color);
+        }
+      }
+    }, 100);
+	}
+
+
   async showToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
@@ -198,7 +208,6 @@ export class MiniFormComponent implements OnInit {
     if (this.isCreate) {
       this.mini = <Miniature>{
         imgUrl: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-        shared: false,
         id: -1,
         paints: []
       };
