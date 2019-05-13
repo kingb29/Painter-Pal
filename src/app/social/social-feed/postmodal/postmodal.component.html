@@ -1,5 +1,4 @@
 <ion-toolbar>
-  <ion-title>{{post.title}}</ion-title>
   <ion-buttons slot="secondary">
     <ion-button (click)="dismissModal()">
       <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -7,25 +6,43 @@
   </ion-buttons>
 </ion-toolbar>
 <ion-content>
-   <div>
-     <p class="author">{{post.author}}</p>
-   </div>
-   <div>
-     <img class="image" src={{post.mini.imgUrl}}>
-   </div>
-   <div>
-    <ion-label *ngFor="let paint of post.mini.paints"><div class="color" [ngStyle]="{'background': paint.color}">&nbsp;</div> {{paint.name}}</ion-label>
-   </div>
-   <div>
-     <p>Likes: {{post.likes}}</p>
-   </div>
-   <div class="comments">
-     <p class="numComments">Comments ({{post.comments.length}})</p>
-     <table *ngFor="let p of post.comments">
-       <tr>
-         <th width="15%"><img src="/assets/userAnon.jpg" class="commentImg"></th>
-         <th align="left" width="85%"><p>{{p}}</p></th>
-       </tr> 
-     </table>
-   </div>
+    <ion-card class="post-card">
+        <img src={{post.mini.imgUrl}}>
+        <ion-card-header>
+          <ion-card-title>{{post.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Made by {{post.author}}</p>
+          <ion-button [disabled] = "!isenabled" (click)="upLikes()">Likes {{post.likes}}</ion-button>
+        </ion-card-content>
+      </ion-card>
+    <ion-card>
+        <div class="comments">
+          <p (click)="showInput()" class="numComments">
+            Comments ({{post.comments.length}})
+            <ion-icon class="postIcon" name="arrow-dropdown"></ion-icon>
+          </p>
+          <div *ngIf="inputBox">
+            <ion-item>
+              <ion-input type="text" name="post" placeholder="Write a comment..." [(ngModel)]="inputValue"></ion-input>
+              <ion-button (click)="makePost()">Post</ion-button>
+            </ion-item>
+            
+          </div>
+          <table class="table" *ngFor="let p of post.comments">
+            <tr class="tRow">
+              <th width="15%"><img src="/assets/userAnon.jpg" class="commentImg"></th>
+              <th align="left" width="85%"><p>{{p}}</p></th>
+            </tr> 
+          </table>
+        </div>
+      </ion-card>
+    <ion-card>
+      <div>
+        <p>Tags:</p>
+        <div *ngFor="let t of post.tags">
+          <ion-chip>{{t}}</ion-chip>
+        </div>
+      </div>
+    </ion-card>
 </ion-content>
