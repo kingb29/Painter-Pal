@@ -9,11 +9,12 @@ import { ModalController, NavParams } from '@ionic/angular';
 export class PostModalComponent implements OnInit {
 
   public post;
-  private isenabled: boolean;
+  private isenabled: boolean = true;
+  public inputBox: boolean = false;
+  public inputValue: string;
 
   constructor(private navParams: NavParams, private modCtrl: ModalController) { 
     this.post = this.navParams.get('post');
-    this.isenabled = true;
   }
 
   ngOnInit() {}
@@ -25,6 +26,21 @@ export class PostModalComponent implements OnInit {
   upLikes(){
     this.post.likes = this.post.likes  + 1;
     this.isenabled = false;
+  }
+
+  showInput(){
+    if(this.inputBox == false){
+      this.inputBox = true;
+    }
+    else{
+      this.inputBox = false;
+    }
+  }
+
+  makePost(){
+    this.inputBox = false;
+    this.post.comments.push(this.inputValue);
+    this.inputValue = "";
   }
 
 }

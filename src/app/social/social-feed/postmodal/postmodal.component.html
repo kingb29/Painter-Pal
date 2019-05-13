@@ -18,7 +18,17 @@
       </ion-card>
     <ion-card>
         <div class="comments">
-          <p class="numComments">Comments ({{post.comments.length}})</p>
+          <p (click)="showInput()" class="numComments">
+            Comments ({{post.comments.length}})
+            <ion-icon class="postIcon" name="arrow-dropdown"></ion-icon>
+          </p>
+          <div *ngIf="inputBox">
+            <ion-item>
+              <ion-input type="text" name="post" placeholder="Write a comment..." [(ngModel)]="inputValue"></ion-input>
+              <ion-button (click)="makePost()">Post</ion-button>
+            </ion-item>
+            
+          </div>
           <table class="table" *ngFor="let p of post.comments">
             <tr class="tRow">
               <th width="15%"><img src="/assets/userAnon.jpg" class="commentImg"></th>
