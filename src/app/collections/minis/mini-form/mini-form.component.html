@@ -33,25 +33,13 @@
       <ion-label position="stacked">Game</ion-label>
       <ion-input [(ngModel)]="this.mini.game" name="game"></ion-input>
     </ion-item>
-
-    <ion-list>
+    <ion-item (click)="prepareColors()">
       <ion-label position="stacked">Paints Used</ion-label>
-      <ion-item *ngFor="let paint of this.paints">
-        <ion-checkbox slot="start" [checked]="doesMiniHaveThisPaint(paint)" (ionChange)="checkOrUncheckPaint($event, paint)"></ion-checkbox>
-        <ion-label><div class="color" [ngStyle]="{'background': paint.color}">&nbsp;</div> {{paint.name}}</ion-label>
-      </ion-item>
-    </ion-list>
-
-    <ion-item>
-      <ion-label position="fixed">Share</ion-label>
-      <ion-checkbox [(ngModel)]="this.mini.shared" name="shared"></ion-checkbox>
+      <ion-select multiple="true" [(ngModel)]="this.mini.paints"  name="paints" cancelText="Cancel" okText="OK">
+        <ion-select-option *ngFor="let paint of this.paints" [value]="paint">{{this.paint.name}}</ion-select-option>
+      </ion-select>
     </ion-item>
-
-    <ion-item *ngIf="this.mini.shared">
-      <ion-label position="stacked">Post Title *</ion-label>
-      <ion-input [(ngModel)]="this.mini.postTitle" name="postTitle" ng-required="this.mini.shared"></ion-input>
-    </ion-item>
-  
+  <br>
     <ion-button expand="full" type="submit">{{this.button}}</ion-button>
     <ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
   </form>

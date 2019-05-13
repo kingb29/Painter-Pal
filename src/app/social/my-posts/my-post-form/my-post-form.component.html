@@ -1,0 +1,28 @@
+<ion-toolbar>
+  <ion-title>{{this?.title}}</ion-title>
+  <ion-buttons slot="secondary">
+    <ion-button (click)="checkIfPostIsDifferent()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content>
+  <form (ngSubmit)="createOrUpdatePost(this.post)">
+    <ion-item>
+      <ion-label position="stacked">Post Title *</ion-label>
+      <ion-input required [(ngModel)]="this.post.title" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="stacked">Post Mini *</ion-label>
+        <ion-row>
+            <ion-col size="6" *ngFor="let mini of this.minis">
+              <ion-card (click)="selectMini(mini)" [ngClass]="this.post.mini == this.mini ? 'selected': ''">
+                <img src="{{mini.imgUrl}}" alt="">
+              </ion-card>
+            </ion-col>
+          </ion-row>
+    </ion-item>
+    <ion-button expand="full" type="submit">{{this.button}}</ion-button>
+    <ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
+  </form>
+</ion-content>

@@ -11,7 +11,7 @@ import { Paint, PaintService } from 'src/app/_services/paint.service'
 
 export class PaintsFormComponent implements OnInit {
   
-  public isCreate = this.navParams.get('thisisCreate')
+  public isCreate = this.navParams.get('thisisCreate');
   public paint: Paint;
   public colors: string[];
   unchangedPaint: Paint;
@@ -45,7 +45,6 @@ export class PaintsFormComponent implements OnInit {
     if (this.isCreate) {
       this.paint.id = this.paintService.generateNewId();
       this.paintService.createPaint(paint);
-      this.showToast("You successfully created a paint");
     } else {
       this.paintService.updatePaint(paint);
     }
@@ -71,7 +70,11 @@ export class PaintsFormComponent implements OnInit {
           cssClass: 'secondary',
           handler: (blah) => {
             this.createOrUpdatePaint(this.paint);
-            this.showToast("You successfully updated a paint");
+            if (this.isCreate) {
+              this.showToast("You successfully created a paint");
+            } else {
+              this.showToast("You successfully updated a paint");
+            }
             this.closeModal();
           }
         }, {

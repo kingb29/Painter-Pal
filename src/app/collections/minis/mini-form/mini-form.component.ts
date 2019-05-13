@@ -5,7 +5,6 @@ import { AlertController } from '@ionic/angular';
 import { ActionSheetService } from 'src/app/_services/actionsheet.service';
 import { CameraService } from 'src/app/_services/camera.service';
 import { SocialfeedService } from 'src/app/_services/socialfeed.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { Paint, PaintService } from 'src/app/_services/paint.service';
 
 @Component({
@@ -40,31 +39,22 @@ export class MiniFormComponent implements OnInit {
       this.title = this.navParams.get('title');
       this.button = this.navParams.get('button');
       
-
+      
       this.paints = this.paintService.getPaints();
+      this.prepareColors();
   }
 
   validate() {
-    if (this.mini.title !== undefined) {
-      if ((this.mini.shared && this.mini.postTitle !== undefined) || !this.mini.shared) {
-        return true;
-      } else {
-        return false; // no postTitle if shared
-      }
-    } else {
-      return false; // no title
-    }
+    return this.mini.title !== undefined;
   }
 
   closeModal() {
     this.modalController.dismiss();
   }
 
-  doesMiniHaveThisPaint(paint) {
-    return this.miniatureService.doesMiniHaveThisPaint(paint, this.mini);
-  }
-
   checkOrUncheckPaint(event, paint) {
+    console.log(event);
+    console.log(paint);
     if (event.detail.checked) {
       this.mini.paints.push(paint);
     } else {
@@ -78,7 +68,7 @@ export class MiniFormComponent implements OnInit {
   }
 
   checkIfMiniIsDifferent() {
-    if (this.unchangedMini !== JSON.stringify(this.mini)) {
+    if (JSON.stringify(this.unchangedMini) !== JSON.stringify(this.mini)) {
       this.doYouWantToSave();
     } else {
       this.closeModal();
@@ -162,26 +152,31 @@ export class MiniFormComponent implements OnInit {
       if (this.isCreate) {
         this.mini.id = this.miniatureService.generateNewId();
         this.miniatureService.createMini(this.mini);
-        if (this.mini.shared) {
-          this.socialFeedService.createOrUpdatePost(this.mini, this.mini.postTitle, "testuser");
-        }
         this.showToast("You successfully created a mini");
       } else {
         this.miniatureService.updateMini(this.mini);
-        if (this.mini.shared) {
-          this.socialFeedService.createOrUpdatePost(this.mini, this.mini.postTitle, "testuser");
-        } else {
-          if (this.socialFeedService.doesPostExistByMiniId(this.mini)) {
-            this.socialFeedService.deletePost(this.mini);
-          }
-        }
         this.showToast("You successfully updated a mini");
       }
-      this.closeModal();
     } else {
       return false;
     }
+    this.closeModal();
   }
+
+  prepareColors() {
+    setTimeout(() => {
+			let elements = document.getElementsByClassName("alert-checkbox-label sc-ion-alert-md") as HTMLCollectionOf<HTMLElement>;
+      if (!elements.length) {
+				this.prepareColors();
+			} else {
+        for (let index = 0; index < elements.length; index++) {
+          console.log("hi");
+          elements[index].setAttribute("style", "border-right: 20px solid " + this.paints[index].color);
+        }
+      }
+    }, 100);
+	}
+
 
   async showToast(msg) {
     const toast = await this.toastController.create({
@@ -198,13 +193,12 @@ export class MiniFormComponent implements OnInit {
     if (this.isCreate) {
       this.mini = <Miniature>{
         imgUrl: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-        shared: false,
         id: -1,
         paints: []
       };
     }
 
-    this.unchangedMini = JSON.stringify(this.mini);
+    this.unchangedMini = Object.assign({}, this.mini);
   }
 
 }

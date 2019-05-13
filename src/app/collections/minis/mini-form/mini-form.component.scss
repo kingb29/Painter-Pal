@@ -20,6 +20,12 @@ ion-label {
     outline-offset: -1px;
 }
 
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h {
+    color: rgb(56, 128, 255);
+}
+
+ion-input {
+    color: #222;
 body{
     padding-top: constant(safe-area-inset-top);
     padding-top: env(safe-area-inset-top);

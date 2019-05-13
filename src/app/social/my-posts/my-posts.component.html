@@ -1,0 +1,13 @@
+<ion-card class="post-card" *ngFor="let p of this.posts" (click)="presentAddOrEditPostModal(false, p)">
+    <ion-img src={{p.mini.imgUrl}}></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{p.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Likes: {{p.likes}}</p>
+      <p>Comments: {{p.comments.length}}</p>
+    </ion-card-content>
+  </ion-card> 
+  <ion-fab class="newItem">
+    <ion-fab-button (click)="presentAddOrEditPostModal(true, undefined)">+</ion-fab-button>
+  </ion-fab>
