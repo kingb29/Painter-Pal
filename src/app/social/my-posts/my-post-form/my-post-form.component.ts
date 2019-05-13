@@ -48,7 +48,7 @@ export class MyPostFormComponent implements OnInit {
   createOrUpdatePost(post) {
     if (this.validate()) {
       if (this.isCreate) {
-        this.socialFeedService.createPost(post);
+        this.socialFeedService.createNewPost(post);
       } else {
         this.socialFeedService.updatePost(post);
       }
