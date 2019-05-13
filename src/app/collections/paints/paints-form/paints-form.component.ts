@@ -37,8 +37,13 @@ export class PaintsFormComponent implements OnInit {
   }
 
   savePaint() {
-    this.createOrUpdatePaint(this.paint);
-    this.showToast("You successfully updated a paint");
+    if(this.paint.name !== undefined && this.paint.color !== undefined){
+      this.createOrUpdatePaint(this.paint);
+      this.showToast("You successfully updated a paint");
+    }else{
+      let elm = <HTMLElement>document.getElementById("hiddenMsg") // grabs hidden element
+      elm.style.visibility = "visible"; // makes it visible
+    }
   }
 
   createOrUpdatePaint(paint) {
@@ -136,5 +141,6 @@ export class PaintsFormComponent implements OnInit {
   ngOnInit() {
     this.unchangedPaint = Object.assign({}, this.paint);
   }
+
 
 }
