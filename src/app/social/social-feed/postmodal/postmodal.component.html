@@ -6,6 +6,7 @@
   </ion-buttons>
 </ion-toolbar>
 <ion-content>
+<<<<<<< HEAD:src/app/social/postmodal/postmodal.component.html
     <ion-card class="post-card">
         <img src={{post.mini.imgUrl}}>
         <ion-card-header>
@@ -35,4 +36,27 @@
         </div>
       </div>
     </ion-card>
+=======
+   <div>
+     <p class="author">{{post.author}}</p>
+   </div>
+   <div>
+     <img class="image" src={{post.mini.imgUrl}}>
+   </div>
+   <div>
+    <ion-label *ngFor="let paint of post.mini.paints"><div class="color" [ngStyle]="{'background': paint.color}">&nbsp;</div> {{paint.name}}</ion-label>
+   </div>
+   <div>
+     <p>Likes: {{post.likes}}</p>
+   </div>
+   <div class="comments">
+     <p class="numComments">Comments ({{post.comments.length}})</p>
+     <table *ngFor="let p of post.comments">
+       <tr>
+         <th width="15%"><img src="/assets/userAnon.jpg" class="commentImg"></th>
+         <th align="left" width="85%"><p>{{p}}</p></th>
+       </tr> 
+     </table>
+   </div>
+>>>>>>> 7693fa3ae7929a06e82c798ffa2c5deffdac419a:src/app/social/social-feed/postmodal/postmodal.component.html
 </ion-content>

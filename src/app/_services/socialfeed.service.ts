@@ -35,8 +35,7 @@ export class SocialfeedService {
           desc: "Blah blah blah description",
           brand: "Reaper",
           game: "DnD",
-          shared: true,
-          postTitle: 'Check out my kewl mini!',
+          paints: [],
         },
         tags: ["dnd"]
       },
@@ -53,8 +52,7 @@ export class SocialfeedService {
           desc: "Blah blah blah description",
           brand: "Citadel",
           game: "Warhammer AoS",
-          shared: true,
-          postTitle: 'Yall like my new brush set?',
+          paints: [],
         },
         tags: ["warhammer"]
       },
@@ -71,8 +69,7 @@ export class SocialfeedService {
           desc: "Blah blah blah description",
           brand: "Citadel",
           game: "Warhammer AoS",
-          shared: true,
-          postTitle: 'Need some help painting my new mini',
+          paints: [],
         },
         tags: ["warhammer"]
       },
@@ -89,8 +86,7 @@ export class SocialfeedService {
           desc: "Blah blah blah description",
           brand: "Citadel",
           game: "Warhammer AoS",
-          shared: true,
-          postTitle: 'Need some suggestions on what new miniatures to buy...',
+          paints: [],
         },
         tags: ["warhammer"]
       },
@@ -107,8 +103,7 @@ export class SocialfeedService {
           desc: "Blah blah blah description",
           brand: "Citadel",
           game: "Warhammer AoS",
-          shared: true,
-          postTitle: 'blahh',
+          paints: [],
         },
         tags: ["warhammer"]
       }
@@ -120,28 +115,22 @@ export class SocialfeedService {
     return this.posts;
   }
 
-  createPost(mini, title, user) {
-    var newPost = {
-      id: this.generateNewId(),
-      title: title,
-      author: user,
-      likes: 0,
-      comments: [],
-      mini: mini,
-      tags: this.generateTags(mini, user, title)
-    }
-    this.posts.push(newPost);
+  getMyPosts() {
+    return this.posts.filter(currentPost => { return currentPost.author == "testuser" });
   }
 
-  updatePost(mini, title, user) {
-    var postId = this.getIndexOfPostByMiniId(mini.id)
-    this.posts[postId].title = title;
-    this.posts[postId].mini = mini;
-    this.posts[postId].tags = this.generateTags(mini, title, user);
+  createPost(post) {
+    this.posts.push(post);
   }
 
-  deletePost(mini) {
-    const index = this.posts.findIndex((post) => post.mini.id === mini.id);
+  updatePost(post) {
+    var postIndex = this.getIndexOfPostById(post.id);
+    this.posts[postIndex] = post; 
+    this.posts[postIndex].tags = this.generateTags(post);
+  }
+
+  deletePost(post) {
+    let index = this.getIndexOfPostById(post.id)
     if (index === -1) {
       console.log("no id found");
     } else {
@@ -149,25 +138,16 @@ export class SocialfeedService {
     }
   }
 
-  createOrUpdatePost(mini, title, user) {
-    if (!this.doesPostExistByMiniId(mini.id)) {
-        this.createPost(mini, title, user);
-    } else {
-        this.updatePost(mini, title, user);
-    }
-    console.log(this.posts);
-  }
-
   doesPostExistByMiniId(id) {
     return (this.posts.findIndex((e) => e.id === id) !== -1);
   }
 
-  getIndexOfPostByMiniId(id) {
+  getIndexOfPostById(id) {
     return this.posts.findIndex((e) => e.id === id);
   }
 
-  generateTags(mini, user, title) {
-    return [title, user, mini.game, mini.brand];
+  generateTags(post) {
+    return [post.title, post.user, post.mini.game, post.mini.brand];
   }
 
   generateNewId() {

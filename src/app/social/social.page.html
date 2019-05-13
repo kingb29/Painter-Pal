@@ -1,32 +1,19 @@
 <ion-header>
   <ion-toolbar>
-      <ion-title>Social</ion-title>
-      <ion-icon name="settings" class="settings-icon" (click)="presentSettingsModal()"></ion-icon>
+    <ion-title>Social</ion-title>
+    <ion-icon name="settings" class="settings-icon" (click)="presentSettingsModal()"></ion-icon>
   </ion-toolbar>
+  <ion-segment (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="social-feed" checked>
+        <ion-label>Social Feed</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="my-posts">
+        <ion-label>My Posts</ion-label>
+      </ion-segment-button>
+    </ion-segment>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
-    <ion-card class="feature-card">
-        <div class="divImg"><ion-img src="/assets/userAnon.jpg"></ion-img></div>
-        <div>
-          <ion-card-header>
-            <ion-card-title>Today's featured artist:</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>miniPainter000</p>
-          </ion-card-content>
-        </div>
-      </ion-card>
-      <ion-card class="post-card" *ngFor="let p of posts" (click)="openModal(p)">
-          <ion-img src={{p.mini.imgUrl}}></ion-img>
-          <ion-card-header>
-            <ion-card-title>{{p.mini.postTitle}}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>Made by {{p.author}}</p>
-            <p>Likes: {{p.likes}}</p>
-            <p>Comments: {{p.comments.length}}</p>
-          </ion-card-content>
-        </ion-card> 
+  <app-social-feed *ngIf="this.whichPage == 'social-feed'"></app-social-feed>
+  <app-my-posts *ngIf="this.whichPage == 'my-posts'"></app-my-posts>
 </ion-content>

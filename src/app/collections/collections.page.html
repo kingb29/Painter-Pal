@@ -1,22 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Collections
-    </ion-title>
+    <ion-title>Collections</ion-title>
     <ion-icon name="settings" class="settings-icon" (click)="presentSettingsModal()"></ion-icon>
   </ion-toolbar>
+  <ion-segment class="minis-and-paints" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="minis" checked>
+        <ion-label>Miniatures</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="paints">
+        <ion-label>Paints</ion-label>
+      </ion-segment-button>
+    </ion-segment>
 </ion-header>
 
 <ion-content> 
-  <ion-segment (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="minis" checked>
-      <ion-label>Miniatures</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="paints">
-      <ion-label>Paints</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-
+  
+    
   <app-minis *ngIf="this.whichPage == 'minis'"></app-minis>
   <app-paints *ngIf="this.whichPage == 'paints'"></app-paints>
 </ion-content>

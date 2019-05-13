@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
-import { PostModalComponent } from './postmodal/postmodal.component';
-import { Post, SocialfeedService } from './../_services/socialfeed.service';
+import { ModalController } from '@ionic/angular';
 import { SettingsComponent } from '../settings/settings.component';
 
 
@@ -11,47 +9,14 @@ import { SettingsComponent } from '../settings/settings.component';
   styleUrls: ['social.page.scss']
 })
 export class SocialPage {
-  posts: Post[];
-  reset: Array<{title: string, author: string, likes, comments, img: string}>;
-  constructor(public nav: NavController, private modalController: ModalController, private socialFeedService: SocialfeedService){ }
+  constructor(private modalController: ModalController){ }
 
-  ngOnInit() {
-    this.initializeItems();
-  }
+  ngOnInit() {}
 
-  search(event){
-    
-    const findTerm = event.srcElement.value;
-    if(!findTerm){
-      this.initializeItems();
-    } else {
-      this.posts = this.socialFeedService.searchByTerm(findTerm);
-    }
-
-    /*this.postArr = this.postArr.filter(currentPost => {
-      if(currentPost.title && findTerm || currentPost.author && findTerm) {
-        if(currentPost.title.toLowerCase().indexOf(findTerm.toLowerCase()) > -1) {
-          return true;
-        } else if(currentPost.author.toLowerCase().indexOf(findTerm.toLowerCase()) > -1) {
-          return true;
-        }
-        return false;
-      }
-    });*/
-  }
-
-  initializeItems() {
-    this.posts = this.socialFeedService.getPosts();
-  }
-
-  async openModal(thisPost) {
-    const modal = await this.modalController.create({
-      component: PostModalComponent,
-      componentProps: {
-        post: thisPost,
-      }
-    });
-    return await modal.present();
+  whichPage = 'social-feed';
+ 
+  segmentChanged(event) {
+    this.whichPage = event.detail.value;
   }
 
   async presentSettingsModal() {
@@ -60,6 +25,4 @@ export class SocialPage {
     });
     return await modal.present();
   }
-
-  
 }

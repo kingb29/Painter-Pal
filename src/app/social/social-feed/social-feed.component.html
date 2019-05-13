@@ -1,0 +1,25 @@
+<ion-content>
+    <ion-searchbar (ionInput)="search($event)" (keyup.enter)="blur($event)"></ion-searchbar>
+      <ion-card class="feature-card">
+          <div class="divImg"><ion-img src="/assets/userAnon.jpg"></ion-img></div>
+          <div>
+            <ion-card-header>
+              <ion-card-title>Today's featured artist:</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p>miniPainter000</p>
+            </ion-card-content>
+          </div>
+        </ion-card>
+        <ion-card class="post-card" *ngFor="let p of posts" (click)="openModal(p)">
+            <ion-img src={{p.mini.imgUrl}}></ion-img>
+            <ion-card-header>
+              <ion-card-title>{{p.title}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Made by {{p.author}}</p>
+              <p>Likes: {{p.likes}}</p>
+              <p>Comments: {{p.comments.length}}</p>
+            </ion-card-content>
+          </ion-card> 
+  </ion-content>

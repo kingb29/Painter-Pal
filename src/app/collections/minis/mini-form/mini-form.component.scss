@@ -12,3 +12,22 @@ img {
 ion-label {
     color: #aaa;
 }
+
+.color {
+    display: inline-block;
+    width: 20px;
+    outline: 1px solid black;
+    outline-offset: -1px;
+}
+
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h {
+    color: rgb(56, 128, 255);
+}
+
+ion-input {
+    color: #222;
+}
+ion-toolbar{
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+}
