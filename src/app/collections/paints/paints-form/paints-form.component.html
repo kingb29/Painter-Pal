@@ -1,4 +1,3 @@
-<body>
 <ion-content>
     <ion-toolbar>
         <ion-title>{{this?.title}}</ion-title>
@@ -8,6 +7,8 @@
           </ion-button>
         </ion-buttons>
       </ion-toolbar>
+      <ion-label position="stacked">Name *</ion-label>
+      <ion-input required placeholder="Paint Name" [(ngModel)]="this.paint.name"></ion-input>
 <ion-list>
   <ion-radio-group [(ngModel)]="this.paint.brand">
   <ion-list-header>
@@ -33,15 +34,13 @@
 </ion-list>
 <div>
   <ion-grid>
-    <ion-header>Pick a Color</ion-header>
+    <ion-header>Pick a Color *</ion-header>
     <ion-row>
         <div class="color" *ngFor="let color of this.colors" (click)="setColor(color)" [ngStyle]="{'background-color': color}" [ngClass]="this.paint.color == this.color ? 'selected': ''">&nbsp;</div>
     </ion-row>
   </ion-grid>
 </div>
-<ion-label position="stacked">Name *</ion-label>
-<ion-input required placeholder="Paint Name" [(ngModel)]="this.paint.name"></ion-input>
 <ion-button expand="full" (click)="savePaint()">{{this.button}}</ion-button>
 <ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
+<div class="hidden" id="hiddenMsg">You need a valid paint name and color!</div>
 </ion-content>
-</body>

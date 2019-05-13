@@ -1,5 +1,9 @@
+<ion-header>
+  <ion-searchbar (ionInput)="search($event)" (keyup.enter)="blur($event)"></ion-searchbar>
+</ion-header>
+
+
 <ion-content>
-    <ion-searchbar (ionInput)="search($event)" (keyup.enter)="blur($event)"></ion-searchbar>
       <ion-card class="feature-card">
           <div class="divImg"><ion-img src="/assets/userAnon.jpg"></ion-img></div>
           <div>

@@ -1,3 +1,6 @@
+<ion-header>
+  <ion-searchbar (ionInput)="search($event)" (keyup.enter)="blur($event)"></ion-searchbar>
+</ion-header>
 <ion-card class="post-card" *ngFor="let p of this.posts" (click)="presentAddOrEditPostModal(false, p)">
     <ion-img src={{p.mini.imgUrl}}></ion-img>
     <ion-card-header>
