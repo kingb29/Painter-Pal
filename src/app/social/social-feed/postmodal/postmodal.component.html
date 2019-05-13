@@ -6,37 +6,6 @@
   </ion-buttons>
 </ion-toolbar>
 <ion-content>
-<<<<<<< HEAD:src/app/social/postmodal/postmodal.component.html
-    <ion-card class="post-card">
-        <img src={{post.mini.imgUrl}}>
-        <ion-card-header>
-          <ion-card-title>{{post.mini.postTitle}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>Made by {{post.author}}</p>
-          <p>Likes: {{post.likes}}</p>
-        </ion-card-content>
-      </ion-card>
-    <ion-card>
-        <div class="comments">
-          <p class="numComments">Comments ({{post.comments.length}})</p>
-          <table class="table" *ngFor="let p of post.comments">
-            <tr class="tRow">
-              <th width="15%"><img src="/assets/userAnon.jpg" class="commentImg"></th>
-              <th align="left" width="85%"><p>{{p}}</p></th>
-            </tr> 
-          </table>
-        </div>
-      </ion-card>
-    <ion-card>
-      <div>
-        <p>Tags:</p>
-        <div *ngFor="let t of post.tags">
-          <ion-chip>{{t}}</ion-chip>
-        </div>
-      </div>
-    </ion-card>
-=======
    <div>
      <p class="author">{{post.author}}</p>
    </div>
@@ -58,5 +27,4 @@
        </tr> 
      </table>
    </div>
->>>>>>> 7693fa3ae7929a06e82c798ffa2c5deffdac419a:src/app/social/social-feed/postmodal/postmodal.component.html
 </ion-content>
