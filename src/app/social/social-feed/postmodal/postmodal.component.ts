@@ -9,7 +9,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 export class PostModalComponent implements OnInit {
 
   public post;
-  private isenabled: boolean = true;
+  public isenabled: boolean = true;
   public inputBox: boolean = false;
   public inputValue: string;
 

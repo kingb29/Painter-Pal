@@ -22,12 +22,14 @@ import { SettingsComponent } from './settings/settings.component';
 
 // database stuff
 import { IonicStorageModule } from '@ionic/storage';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
   declarations: [AppComponent, SettingsComponent],
   entryComponents: [SettingsComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule, HttpClientModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [
     StatusBar,
     SplashScreen,
