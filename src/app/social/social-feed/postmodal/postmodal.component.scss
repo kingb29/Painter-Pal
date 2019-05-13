@@ -13,7 +13,14 @@
     margin-left: auto;
     margin-right: auto;
 }
-
-.color {
-    display: inline;
+.tRow th {
+    color: black;
+}
+.tRow {
+    border-style: outset;
+    border-width: 1px;
+    border-color: whitesmoke;
+    border-top: none;
+    border-left: none;
+    box-shadow: 5px 10px whitesmoke;
 }
