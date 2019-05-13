@@ -12,6 +12,8 @@ import { Paint, PaintService } from 'src/app/_services/paint.service'
 export class PaintsFormComponent implements OnInit {
   
   public isCreate = this.navParams.get('thisisCreate');
+  public title = this.navParams.get('thistitle');
+  public button = this.navParams.get('thisbutton');
   public paint: Paint;
   public colors: string[];
   unchangedPaint: Paint;
