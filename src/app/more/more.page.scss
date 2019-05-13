@@ -1,11 +1,15 @@
 .morepage{
     width: 85%;
-    background-color: #8fbc8f;
+    background-color: var(--color);
     height: 2.5cm;   
     text-align: center;
 }
 
+.morepage:hover{
+    background-color: var(--ion-color-primary);
+}
+
 .titlecard{
     text-align: center;
-    color: #e0dbd1;
+    color: white;
 }
