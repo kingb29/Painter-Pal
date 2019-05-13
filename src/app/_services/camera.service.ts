@@ -25,8 +25,8 @@ export class CameraService {
       correctOrientation: true
     }
       this.camera.getPicture(options).then((url) => {
-        component.newMini.imgUrl = this.webview.convertFileSrc(url);
-        console.log(component.newMini.imgUrl);
+        component.mini.imgUrl = this.webview.convertFileSrc(url);
+        console.log(component.mini.imgUrl);
     });
   }
 }

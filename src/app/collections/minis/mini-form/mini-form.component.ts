@@ -141,8 +141,8 @@ export class MiniFormComponent implements OnInit {
         icon: 'images',
         handler: () => {
           console.log('upload clicked');
-          this.mini.imgUrl = this.cameraService.takePhoto(this, "upload");
-      }
+          this.cameraService.takePhoto(this, "upload");
+        }
       }
     ]);
   }
