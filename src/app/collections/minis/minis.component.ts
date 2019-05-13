@@ -25,7 +25,6 @@ export class MinisComponent implements OnInit {
     var thismini = (!thisisCreate)? thismini:<Miniature>{
       title: '',
       imgUrl: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-      shared: false,
       id: -1
     };
     const modal = await this.modalController.create({

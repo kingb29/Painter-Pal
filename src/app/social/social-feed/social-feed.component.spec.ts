@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostFormComponent } from './post-form.component';
+import { SocialFeedComponent } from './social-feed.component';
 
-describe('PostFormComponent', () => {
-  let component: PostFormComponent;
-  let fixture: ComponentFixture<PostFormComponent>;
+describe('SocialFeedComponent', () => {
+  let component: SocialFeedComponent;
+  let fixture: ComponentFixture<SocialFeedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostFormComponent ],
+      declarations: [ SocialFeedComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostFormComponent);
+    fixture = TestBed.createComponent(SocialFeedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

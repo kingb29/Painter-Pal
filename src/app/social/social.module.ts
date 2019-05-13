@@ -4,8 +4,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SocialPage } from './social.page';
-import { PostModalComponent } from './postmodal/postmodal.component';
-import { PostFormComponent } from './post-form/post-form.component';
+import { PostModalComponent } from './social-feed/postmodal/postmodal.component';
+import { MyPostsComponent } from './my-posts/my-posts.component';
+import { SocialFeedComponent } from './social-feed/social-feed.component';
+import { MyPostFormComponent } from './my-posts/my-post-form/my-post-form.component';
 
 @NgModule({
   imports: [
@@ -14,7 +16,7 @@ import { PostFormComponent } from './post-form/post-form.component';
     FormsModule,
     RouterModule.forChild([{ path: '', component: SocialPage }])
   ],
-  declarations: [SocialPage, PostModalComponent, PostFormComponent],
-  entryComponents: [PostModalComponent]
+  declarations: [SocialPage, PostModalComponent, MyPostsComponent, MyPostFormComponent, SocialFeedComponent],
+  entryComponents: [PostModalComponent, MyPostFormComponent]
 })
 export class SocialPageModule {}

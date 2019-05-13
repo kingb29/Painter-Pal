@@ -5,7 +5,6 @@ import { AlertController } from '@ionic/angular';
 import { ActionSheetService } from 'src/app/_services/actionsheet.service';
 import { CameraService } from 'src/app/_services/camera.service';
 import { SocialfeedService } from 'src/app/_services/socialfeed.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { Paint, PaintService } from 'src/app/_services/paint.service';
 
 @Component({
@@ -53,10 +52,6 @@ export class MiniFormComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  doesMiniHaveThisPaint(paint) {
-    return this.miniatureService.doesMiniHaveThisPaint(paint, this.mini);
-  }
-
   checkOrUncheckPaint(event, paint) {
     console.log(event);
     console.log(paint);
@@ -73,7 +68,7 @@ export class MiniFormComponent implements OnInit {
   }
 
   checkIfMiniIsDifferent() {
-    if (this.unchangedMini !== JSON.stringify(this.mini)) {
+    if (JSON.stringify(this.unchangedMini) !== JSON.stringify(this.mini)) {
       this.doYouWantToSave();
     } else {
       this.closeModal();
@@ -157,25 +152,15 @@ export class MiniFormComponent implements OnInit {
       if (this.isCreate) {
         this.mini.id = this.miniatureService.generateNewId();
         this.miniatureService.createMini(this.mini);
-        if (this.mini.shared) {
-          this.socialFeedService.createOrUpdatePost(this.mini, this.mini.postTitle, "testuser");
-        }
         this.showToast("You successfully created a mini");
       } else {
         this.miniatureService.updateMini(this.mini);
-        if (this.mini.shared) {
-          this.socialFeedService.createOrUpdatePost(this.mini, this.mini.postTitle, "testuser");
-        } else {
-          if (this.socialFeedService.doesPostExistByMiniId(this.mini)) {
-            this.socialFeedService.deletePost(this.mini);
-          }
-        }
         this.showToast("You successfully updated a mini");
       }
-      this.closeModal();
     } else {
       return false;
     }
+    this.closeModal();
   }
 
   prepareColors() {
@@ -213,7 +198,7 @@ export class MiniFormComponent implements OnInit {
       };
     }
 
-    this.unchangedMini = JSON.stringify(this.mini);
+    this.unchangedMini = Object.assign({}, this.mini);
   }
 
 }
