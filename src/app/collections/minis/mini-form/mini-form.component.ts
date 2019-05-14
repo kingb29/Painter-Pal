@@ -6,6 +6,7 @@ import { ActionSheetService } from 'src/app/_services/actionsheet.service';
 import { CameraService } from 'src/app/_services/camera.service';
 import { SocialfeedService } from 'src/app/_services/socialfeed.service';
 import { Paint, PaintService } from 'src/app/_services/paint.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-mini-form',
@@ -23,6 +24,8 @@ export class MiniFormComponent implements OnInit {
 
   public paints: Paint[];
 
+  public selectedImage;
+
 
   constructor(
     private modalController: ModalController, 
@@ -33,6 +36,7 @@ export class MiniFormComponent implements OnInit {
     private cameraService: CameraService,
     private miniatureService: MiniatureService,
     private socialFeedService: SocialfeedService,
+    public sanitizer: DomSanitizer,
     private navParams: NavParams) {
 
       this.isCreate = this.navParams.get('isCreate');
@@ -161,6 +165,16 @@ export class MiniFormComponent implements OnInit {
       return false;
     }
     this.closeModal();
+  }
+
+  onImageSelected(event) {
+    this.selectedImage = event.target.files[0];
+    let reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      this.mini.imgUrl = e.target.result;
+    };
+    reader.readAsDataURL(this.selectedImage);
   }
 
   prepareColors() {
