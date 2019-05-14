@@ -9,12 +9,11 @@
   </ion-toolbar>
 <ion-content>
   <form (ngSubmit)="createUpdateMini()">
-    
     <ion-item>
-      <img [src]="this.mini.imgUrl">
-      <ion-fab class="newItem">
-        <ion-fab-button (click)="openActionSheet()">+</ion-fab-button>
-      </ion-fab>
+      <img [src]="this.sanitizer.bypassSecurityTrustResourceUrl(this.mini.imgUrl)">
+    </ion-item>
+    <ion-item>
+        <ion-input type="file" accept="image/*" capture="camera" [(ngModel)]="this.mini.imgUrl" (change)="onImageSelected($event)" name="image"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Name *</ion-label>
