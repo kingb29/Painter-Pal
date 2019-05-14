@@ -27,6 +27,8 @@ export class MiniatureService {
       <Miniature> {
       title: 'This cool guy',
       imgUrl: 'https://whc-cdn.games-workshop.com/wp-content/uploads/2017/02/Best-2016-10-Stardrake.jpg',
+      game: 'Warhammer',
+      brand: 'Games Workshop',
       id: 6,
       paints: []
     });

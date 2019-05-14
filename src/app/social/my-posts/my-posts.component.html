@@ -1,15 +1,17 @@
-<ion-header>
-</ion-header>
-<ion-card class="post-card" *ngFor="let p of this.posts" (click)="presentAddOrEditPostModal(false, p)">
-    <ion-img src={{p.mini.imgUrl}}></ion-img>
-    <ion-card-header>
-      <ion-card-title>{{p.title}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Likes: {{p.likes}}</p>
-      <p>Comments: {{p.comments.length}}</p>
-    </ion-card-content>
-  </ion-card> 
-  <ion-fab class="newItem">
-    <ion-fab-button (click)="presentAddOrEditPostModal(true, undefined)">+</ion-fab-button>
-  </ion-fab>
+<ion-row>
+  <ion-col *ngFor="let p of this.posts">
+    <ion-card class="post-card" (click)="presentAddOrEditPostModal(false, p)">
+      <img src={{p.mini.imgUrl}}>
+      <ion-card-header>
+        <ion-card-title>{{p.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Likes: {{p.likes}}</p>
+        <p>Comments: {{p.comments.length}}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+</ion-row>
+<ion-fab class="newItem">
+  <ion-fab-button (click)="presentAddOrEditPostModal(true, undefined)">+</ion-fab-button>
+</ion-fab>

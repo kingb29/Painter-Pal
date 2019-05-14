@@ -1,46 +1,50 @@
+<ion-toolbar>
+  <ion-title>{{this?.title}}</ion-title>
+  <ion-buttons slot="secondary">
+    <ion-button (click)="checkIfPaintIsDifferent()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
 <ion-content>
-    <ion-toolbar>
-        <ion-title>{{this?.title}}</ion-title>
-        <ion-buttons slot="secondary">
-          <ion-button (click)="checkIfPaintIsDifferent()">
-            <ion-icon slot="icon-only" name="close"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-      <ion-label position="stacked">Name *</ion-label>
-      <ion-input required placeholder="Paint Name" [(ngModel)]="this.paint.name"></ion-input>
-<ion-list>
-  <ion-radio-group [(ngModel)]="this.paint.brand">
-  <ion-list-header>
-    <ion-label>Paint Brand</ion-label>
-  </ion-list-header>
   <ion-item>
-    <ion-label>Citadel</ion-label>
-    <ion-radio slot="start" value="Citadel" (click)="setBrand('Citadel')">
-    </ion-radio>
+    <ion-label position="stacked" class="label">Name *</ion-label>
+    <ion-input required placeholder="Paint Name" [(ngModel)]="this.paint.name"></ion-input>
   </ion-item>
+  <ion-item>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="this.paint.brand">
+      <ion-label class="label label-brand">Paint Brand</ion-label>
+      <ion-item>
+        <ion-label>Citadel</ion-label>
+        <ion-radio slot="start" value="Citadel" (click)="setBrand('Citadel')">
+        </ion-radio>
+      </ion-item>
 
-  <ion-item>
-    <ion-label>Valejo</ion-label>
-    <ion-radio slot="start" value="Valejo" (click)="setBrand('Valejo')">
-    </ion-radio>
-  </ion-item>
+      <ion-item>
+        <ion-label>Valejo</ion-label>
+        <ion-radio slot="start" value="Valejo" (click)="setBrand('Valejo')">
+        </ion-radio>
+      </ion-item>
 
+      <ion-item>
+        <ion-label>Army Painter</ion-label>
+        <ion-radio slot="start" value="Army-Painter" (click)="setBrand('Army Painter')"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-item>
   <ion-item>
-    <ion-label>Army Painter</ion-label>
-    <ion-radio slot="start" value="Army-Painter" (click)="setBrand('Army Painter')"></ion-radio>
+    <ion-grid>
+      <ion-label class="label pick-a-color">Pick a Color *</ion-label>
+      <ion-row>
+        <div class="color" *ngFor="let color of this.colors" (click)="setColor(color)"
+          [ngStyle]="{'background-color': color}" [ngClass]="this.paint.color == this.color ? 'selected': ''">&nbsp;
+        </div>
+      </ion-row>
+    </ion-grid>
   </ion-item>
-  </ion-radio-group>
-</ion-list>
-<div>
-  <ion-grid>
-    <ion-header>Pick a Color *</ion-header>
-    <ion-row>
-        <div class="color" *ngFor="let color of this.colors" (click)="setColor(color)" [ngStyle]="{'background-color': color}" [ngClass]="this.paint.color == this.color ? 'selected': ''">&nbsp;</div>
-    </ion-row>
-  </ion-grid>
-</div>
-<ion-button expand="full" (click)="savePaint()">{{this.button}}</ion-button>
-<ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
-<div class="hidden" id="hiddenMsg">You need a valid paint name and color!</div>
+  <ion-button class="save-create-button" expand="full" (click)="savePaint()">{{this.button}}</ion-button>
+  <ion-button *ngIf="!isCreate" expand="full" (click)="doYouWantToDelete()" color="danger">Delete</ion-button>
+  <div class="hidden" id="hiddenMsg">You need a valid paint name and color!</div>
 </ion-content>

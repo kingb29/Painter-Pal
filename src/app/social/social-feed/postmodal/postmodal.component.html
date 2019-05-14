@@ -5,7 +5,7 @@
     </ion-button>
   </ion-buttons>
 </ion-toolbar>
-<ion-content>
+<ion-content class="tabs-content">
     <ion-card class="post-card">
         <img src={{post.mini.imgUrl}}>
         <ion-card-header>
@@ -17,7 +17,7 @@
         </ion-card-content>
       </ion-card>
     <ion-card>
-        <div class="comments">
+        <ion-card-content class="comments">
           <p (click)="showInput()" class="numComments">
             Comments ({{post.comments.length}})
             <ion-icon class="postIcon" name="arrow-dropdown"></ion-icon>
@@ -35,14 +35,14 @@
               <th align="left" width="85%"><p>{{p}}</p></th>
             </tr> 
           </table>
-        </div>
+        </ion-card-content>
       </ion-card>
     <ion-card>
-      <div>
+      <ion-card-content>
         <p>Tags:</p>
         <div *ngFor="let t of post.tags">
           <ion-chip>{{t}}</ion-chip>
         </div>
-      </div>
+      </ion-card-content>
     </ion-card>
 </ion-content>
