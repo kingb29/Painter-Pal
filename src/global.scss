@@ -23,4 +23,16 @@ ion-title {
 
 ion-label {
     font-family: 'Play';
+}
+
+.platform-android {
+    .tabs-content {
+      @extend .has-tabs-top !optional;
+    }
+  }
+  
+  .platform-ios {
+    .tabs-content {
+      @extend .has-tabs !optional;
+    }
   }

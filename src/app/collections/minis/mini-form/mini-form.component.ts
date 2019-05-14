@@ -94,6 +94,7 @@ export class MiniFormComponent implements OnInit {
         }, {
           text: 'No',
           handler: () => {
+            this.miniatureService.updateMini(this.unchangedMini);
             this.closeModal();
           }
         }
@@ -128,27 +129,6 @@ export class MiniFormComponent implements OnInit {
     });
 
     await alert.present();
-  }
-
-  openActionSheet() {
-    this.actionSheetService.present([
-      {
-        text: 'Take Picture',
-        icon: 'camera',
-        handler: () => {
-          console.log('camera clicked');
-          this.cameraService.takePhoto(this, "camera");
-        }
-      },
-      {
-        text: 'Upload Picture From Phone',
-        icon: 'images',
-        handler: () => {
-          console.log('upload clicked');
-          this.cameraService.takePhoto(this, "upload");
-        }
-      }
-    ]);
   }
 
   createUpdateMini() {

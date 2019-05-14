@@ -1,4 +1,4 @@
-<ion-content class="paints-page">
+<ion-content class="paints-page tabs-content">
   <ion-row>
     <ion-col size="6" *ngFor="let paint of this.paints">
       <ion-card (click)="presentAddOrEditPaintModal(false, paint)">
@@ -7,7 +7,7 @@
           <p>{{paint.name}}</p>
         </ion-item>
         <ion-item>
-          <p>{{paint.brand}}</p>
+          <p class="paint-brand">{{paint.brand}}</p>
         </ion-item>
       </ion-card>
     </ion-col>

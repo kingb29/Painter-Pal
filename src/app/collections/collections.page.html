@@ -11,11 +11,8 @@
         <ion-label>Paints</ion-label>
       </ion-segment-button>
     </ion-segment>
-</ion-header>
-
-<ion-content> 
-  
-    
+</ion-header> 
+<ion-content>
   <app-minis *ngIf="this.whichPage == 'minis'"></app-minis>
   <app-paints *ngIf="this.whichPage == 'paints'"></app-paints>
 </ion-content>

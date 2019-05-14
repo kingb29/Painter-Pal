@@ -49,13 +49,15 @@ export class MyPostFormComponent implements OnInit {
     if (this.validate()) {
       if (this.isCreate) {
         this.socialFeedService.createPost(post);
+        this.showToast("You successfully created a post");
       } else {
         this.socialFeedService.updatePost(post);
+        this.showToast("You successfully updated a post");
       }
-        this.closeModal();
     } else {
       return false;
     }
+    this.closeModal();
   }
 
   async doYouWantToSave() {
@@ -79,8 +81,7 @@ export class MyPostFormComponent implements OnInit {
         }, {
           text: 'No',
           handler: () => {
-            console.log("hi");
-            this.createOrUpdatePost(this.unchangedPost);
+            this.socialFeedService.updatePost(this.unchangedPost);
             this.closeModal();
           }
         }

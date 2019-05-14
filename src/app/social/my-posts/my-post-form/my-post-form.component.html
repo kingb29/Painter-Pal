@@ -17,7 +17,7 @@
         <ion-row>
             <ion-col size="6" *ngFor="let mini of this.minis">
               <ion-card (click)="selectMini(mini)" [ngClass]="this.post.mini == this.mini ? 'selected': ''">
-                <img src="{{mini.imgUrl}}" alt="">
+                <img class="post-img" src="{{mini.imgUrl}}" alt="">
               </ion-card>
             </ion-col>
           </ion-row>
