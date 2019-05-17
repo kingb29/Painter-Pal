@@ -17,3 +17,24 @@ ion-toolbar{
     color: red;
     visibility: hidden;
 }
+
+.label {
+    color: rgb(56, 128, 255);
+}
+
+.pick-a-color {
+    padding: 10px 0px 5px 0px;
+    margin-left: -4px;
+}
+
+.pick-a-color, .label-brand {
+    font-size: 12.8px;
+}
+
+.save-create-button {
+    margin-top: 20px;
+}
+
+ion-input {
+    color: #222;
+}

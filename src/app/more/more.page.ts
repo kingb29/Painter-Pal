@@ -9,6 +9,8 @@ import { SettingsComponent } from '../settings/settings.component';
 })
 export class MorePage {
 
+  whichPage: string;
+
   constructor(private modalController: ModalController) {}
 
   async presentSettingsModal() {

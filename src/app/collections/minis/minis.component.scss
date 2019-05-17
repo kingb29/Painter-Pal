@@ -12,17 +12,14 @@ ion-grid {
     }
 }
 
+.mini-title {
+  text-align: center;
+  color: #000;
+}
+
 img {
     min-height: 170px;
     object-fit: cover;
-}
-
-.shared-icon {
-  position: absolute;
-  top: 1px;
-  right: 1px;
-  font-size: 2em;
-  color: orange;
 }
 
 p {

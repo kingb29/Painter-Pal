@@ -3,7 +3,7 @@
     <ion-col size="6" *ngFor="let mini of this.minis">
     <ion-card (click)="presentAddOrEditMiniModal(false, mini)">
       <img src="{{mini.imgUrl}}" alt="">
-      <p>{{mini.title}}</p>
+      <h4 class="mini-title">{{mini.title}}</h4>
       <ion-icon *ngIf="mini !== undefined && mini.shared == true" name="share-alt" class="shared-icon"></ion-icon>
     </ion-card>
     </ion-col>

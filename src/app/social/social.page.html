@@ -1,3 +1,4 @@
+<ion-content class="tabs-content">
 <ion-header>
   <ion-toolbar>
     <ion-title>Social</ion-title>
@@ -12,8 +13,6 @@
       </ion-segment-button>
     </ion-segment>
 </ion-header>
-
-<ion-content>
   <app-social-feed *ngIf="this.whichPage == 'social-feed'"></app-social-feed>
   <app-my-posts *ngIf="this.whichPage == 'my-posts'"></app-my-posts>
 </ion-content>
