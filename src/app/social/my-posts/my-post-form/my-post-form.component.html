@@ -9,11 +9,11 @@
 <ion-content>
   <form (ngSubmit)="createOrUpdatePost(this.post)">
     <ion-item>
-      <ion-label position="stacked">Post Title *</ion-label>
+      <ion-label class="label" position="stacked">Post Title *</ion-label>
       <ion-input required [(ngModel)]="this.post.title" name="title"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-label position="stacked">Post Mini *</ion-label>
+        <ion-label class="label" position="stacked">Post Mini *</ion-label>
         <ion-row>
             <ion-col size="6" *ngFor="let mini of this.minis">
               <ion-card (click)="selectMini(mini)" [ngClass]="this.post.mini == this.mini ? 'selected': ''">
