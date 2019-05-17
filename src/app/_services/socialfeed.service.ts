@@ -123,6 +123,10 @@ export class SocialfeedService {
     this.posts.push(post);
   }
 
+  createNewPost(post){
+    this.posts.unshift(post);
+  }
+
   updatePost(post) {
     var postIndex = this.getIndexOfPostById(post.id);
     this.posts[postIndex] = post; 
