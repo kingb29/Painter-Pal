@@ -1,6 +1,6 @@
 # painter-pal
 
-Painter Pal is a Progressive Web App that was developed using Ionic and Angular.
+Painter Pal is a Progressive Web App, developed using Ionic and Angular.
 
 The purpose of this app was to develop a mobile application that helps miniature painters keep track of their collection, and allows other miniature painters to connect with their community.
 
